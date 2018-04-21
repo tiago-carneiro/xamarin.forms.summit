@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.MainPage"
-             Title="Xamarin Summit">
+             Title="{Binding Title}">
 
-	<Label Text="Xamarin Summit" 
+    <Label Text="{Binding PageTitle}" 
            VerticalOptions="Center" 
            HorizontalOptions="Center" />
 
