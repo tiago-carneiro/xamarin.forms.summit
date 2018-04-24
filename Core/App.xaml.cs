@@ -1,5 +1,4 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,28 +17,19 @@ namespace Xamarin.Summit
             InitializeAsyc();
         }
 
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
+        protected override void OnStart() { }
 
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
+        protected override void OnSleep() { }
 
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+        protected override void OnResume() { }
 
         void RegisterDependency()
-            => DependencyService.Register<INavigationService, NavigationService>();
+            => ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
 
         void RegisterRoutes()
             => NavigationService.ConfigureMap<MainViewModel, MainPage>();
 
         async void InitializeAsyc()
-            => await DependencyService.Get<INavigationService>().NavigateToAsync<MainViewModel>();
+            => await ViewModelLocator.Instance.Resolve<INavigationService>().NavigateToAsync<MainViewModel>();
     }
 }

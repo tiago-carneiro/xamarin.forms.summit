@@ -28,7 +28,10 @@ namespace Xamarin.Summit
                                                           where TPage : Page
         {
             if (!_mappings.ContainsKey(typeof(TViewModel)))
+            {
+                ViewModelLocator.Instance.Register<TViewModel>();
                 _mappings.Add(typeof(TViewModel), typeof(TPage));
+            }
         }
 
         public async Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel
@@ -105,7 +108,7 @@ namespace Xamarin.Summit
                 throw new Exception($"Mapping type for {viewModelType} is not a page");
 
             var page = Activator.CreateInstance(pageType) as Page;
-            var viewModel = Activator.CreateInstance(viewModelType) as BaseViewModel;
+            var viewModel = ViewModelLocator.Instance.Resolve(viewModelType) as BaseViewModel;
             page.BindingContext = viewModel;
             return page;
         }
