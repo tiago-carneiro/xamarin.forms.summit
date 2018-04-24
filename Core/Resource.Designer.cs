@@ -61,6 +61,33 @@ namespace Xamarin.Summit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agenda.
+        /// </summary>
+        public static string AgendaTitle {
+            get {
+                return ResourceManager.GetString("AgendaTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apoio.
+        /// </summary>
+        public static string ApoioTitle {
+            get {
+                return ResourceManager.GetString("ApoioTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informações.
+        /// </summary>
+        public static string InfoTitle {
+            get {
+                return ResourceManager.GetString("InfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xamarin Summit.
         /// </summary>
         public static string MainTitle {

@@ -11,28 +11,31 @@ namespace Xamarin.Summit
         {
             InitializeComponent();
 
-            RegisterDependency();
-            RegisterRoutes();
+            RegisterTypes();
+            ConfigureMap();
+
             InitializeAsyc();
         }
 
-        protected override void OnStart() { }
-
-        protected override void OnSleep() { }
-
-        protected override void OnResume() { }
-
-        void RegisterDependency()
+        void RegisterTypes()
         {
             ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
 
             ViewModelLocator.Instance.Register<MainViewModel>();
+            ViewModelLocator.Instance.Register<InfoViewModel>();
+            ViewModelLocator.Instance.Register<AgendaViewModel>();
+            ViewModelLocator.Instance.Register<ApoioViewModel>();
 
             ViewModelLocator.Instance.Build();
         }
 
-        void RegisterRoutes()
-            => NavigationService.ConfigureMap<MainViewModel, MainPage>();
+        void ConfigureMap()
+        {
+            NavigationService.ConfigureMap<MainViewModel, MainPage>();
+            NavigationService.ConfigureMap<InfoViewModel, InfoPage>();
+            NavigationService.ConfigureMap<AgendaViewModel, AgendaPage>();
+            NavigationService.ConfigureMap<ApoioViewModel, ApoioPage>();
+        }
 
         async void InitializeAsyc()
             => await ViewModelLocator.Instance.Resolve<INavigationService>().NavigateToAsync<MainViewModel>();

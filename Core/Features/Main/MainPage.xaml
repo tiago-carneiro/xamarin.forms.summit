@@ -4,9 +4,9 @@
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.MainPage"
              Title="{Binding Title}">
-    
-    <ContentPage Title="Tab 1" />
-    <ContentPage Title="Tab 2" />
-    <ContentPage Title="Tab 3" />
+
+    <local:InfoPage Title="{Binding Title}" />
+    <local:AgendaPage Title="{Binding Title}" />
+    <local:ApoioPage Title="{Binding Title}" />
 
 </TabbedPage>

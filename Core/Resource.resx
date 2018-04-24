@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AgendaTitle" xml:space="preserve">
+    <value>Agenda</value>
+  </data>
+  <data name="ApoioTitle" xml:space="preserve">
+    <value>Apoio</value>
+  </data>
+  <data name="InfoTitle" xml:space="preserve">
+    <value>Informações</value>
+  </data>
   <data name="MainTitle" xml:space="preserve">
     <value>Xamarin Summit</value>
   </data>

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Xamarin.Summit
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         private string _title;
         public string Title
@@ -30,13 +30,13 @@ namespace Xamarin.Summit
         protected void RaisePropertyChanged(string propertyName) 
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public BaseViewModel(string title) 
+        protected BaseViewModel(string title) 
             => Title = title;
 
-        public async Task InitializeAsync()
+        public virtual async Task InitializeAsync()
             => await Task.FromResult(true);
 
-        public async Task InitializeAsync(object parameter)
+        public virtual  async Task InitializeAsync(object parameter)
             => await Task.FromResult(true);
     }
 }

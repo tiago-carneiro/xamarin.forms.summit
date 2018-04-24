@@ -45,7 +45,7 @@ namespace Xamarin.Summit
 
         async Task NavigateToAsync(Type type, object parameter, bool cleanBackStack, bool modal)
         {
-            var page = CreateAndBindPage(type, parameter);
+            var page = CreateAndBindPage(type);
 
             var navigationPage = CurrentApplication.MainPage as NavigationPage;
             var masterDetailPage = CurrentApplication.MainPage as MasterDetailPage;
@@ -97,7 +97,7 @@ namespace Xamarin.Summit
             return _mappings[viewModelType];
         }
 
-        Page CreateAndBindPage(Type viewModelType, object parameter)
+        Page CreateAndBindPage(Type viewModelType)
         {
             var pageType = GetPageTypeForViewModel(viewModelType);
 
