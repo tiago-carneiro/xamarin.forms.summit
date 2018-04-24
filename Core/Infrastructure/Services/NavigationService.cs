@@ -28,10 +28,7 @@ namespace Xamarin.Summit
                                                           where TPage : Page
         {
             if (!_mappings.ContainsKey(typeof(TViewModel)))
-            {
-                ViewModelLocator.Instance.Register<TViewModel>();
                 _mappings.Add(typeof(TViewModel), typeof(TPage));
-            }
         }
 
         public async Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -24,7 +23,13 @@ namespace Xamarin.Summit
         protected override void OnResume() { }
 
         void RegisterDependency()
-            => ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
+        {
+            ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
+
+            ViewModelLocator.Instance.Register<MainViewModel>();
+
+            ViewModelLocator.Instance.Build();
+        }
 
         void RegisterRoutes()
             => NavigationService.ConfigureMap<MainViewModel, MainPage>();
