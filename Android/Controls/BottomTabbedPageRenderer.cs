@@ -7,6 +7,7 @@ using Android.Support.V4.View;
 using Android.Views;
 using System.ComponentModel;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.Platform.Android.AppCompat;
 using Xamarin.Summit;
 using Xamarin.Summit.Android;
@@ -16,12 +17,12 @@ namespace Xamarin.Summit.Android
 {
     public class BottomTabbedPageRenderer : TabbedPageRenderer
     {
+        bool setup;
+
         public BottomTabbedPageRenderer(Context context) : base(context)
         {
         }
-
-
-        bool setup;
+        
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
@@ -31,16 +32,13 @@ namespace Xamarin.Summit.Android
 
             if (e.PropertyName == "Renderer")
             {
-                var pager = (ViewPager)ViewGroup.GetChildAt(0);
                 var layout = (TabLayout)ViewGroup.GetChildAt(1);
                 setup = true;
-
-                ColorStateList colors = null;
-                if ((int)Build.VERSION.SdkInt >= 23)
-                    colors = Resources.GetColorStateList(Resource.Drawable.icon_tab, MainApplication.CurrentContext.Theme);
-                else
-                    colors = Resources.GetColorStateList(Resource.Drawable.icon_tab);                
-
+                var iconTab = Resource.Drawable.icon_tab;
+                ColorStateList colors = Build.VERSION.SdkInt >= BuildVersionCodes.M ? 
+                            Resources.GetColorStateList(iconTab, MainApplication.CurrentContext.Theme) : 
+                            Resources.GetColorStateList(Resource.Drawable.icon_tab);
+                layout.SetBackgroundColor(Color.White.ToAndroid());
                 for (int i = 0; i < layout.TabCount; i++)
                 {
                     var tab = layout.GetTabAt(i);
