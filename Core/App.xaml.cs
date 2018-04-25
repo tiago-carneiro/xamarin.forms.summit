@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -13,7 +16,7 @@ namespace Xamarin.Summit
 
             RegisterTypes();
             ConfigureMap();
-
+            RegisterAppCenter();
             InitializeAsyc();
         }
 
@@ -35,6 +38,12 @@ namespace Xamarin.Summit
             NavigationService.ConfigureMap<InfoViewModel, InfoPage>();
             NavigationService.ConfigureMap<AgendaViewModel, AgendaPage>();
             NavigationService.ConfigureMap<ApoioViewModel, ApoioPage>();
+        }
+
+        void RegisterAppCenter()
+        {
+            AppCenter.Start(ConstantHelper.AppCenterKey,
+                  typeof(Analytics), typeof(Crashes));
         }
 
         async void InitializeAsyc()
