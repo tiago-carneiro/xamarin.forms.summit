@@ -1,7 +1,12 @@
 ﻿
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
+using Android.Views;
+using Xamarin.Forms.Platform.Android.AppCompat;
 
 namespace Xamarin.Summit.Android
 {

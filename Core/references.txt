@@ -1,0 +1,6 @@
+﻿https://github.com/willbuildapps/temfraldabarata
+ViewModelLocator
+NavigationService
+
+https://stackoverflow.com/questions/38446426/bottom-tabs-for-xamarin-android-in-xamarin-forms-app
+BottomTabbedPageRenderer

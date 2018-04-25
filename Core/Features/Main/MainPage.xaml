@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<local:BottomTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Xamarin.Summit"
-             x:Class="Xamarin.Summit.MainPage"
-            NavigationPage.HasNavigationBar="False">
+             x:Class="Xamarin.Summit.MainPage">
 
     <local:InfoPage Icon="info"/>
     <local:AgendaPage Icon="calendar"/>
     <local:ApoioPage Icon="loyalty"/>
 
-</TabbedPage>
+</local:BottomTabbedPage>

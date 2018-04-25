@@ -8,7 +8,6 @@ namespace Xamarin.Summit
         protected TabbedItemPage(Type viewModelType)
         {
             BindingContext = ViewModelLocator.Instance.Resolve(viewModelType);
-            SetBinding(TitleProperty, new Binding(nameof(BaseViewModel.Title)));
         }
 
         protected async override void OnAppearing()
