@@ -1,4 +1,5 @@
 ﻿using Refit;
+using System;
 using System.Threading.Tasks;
 
 namespace Xamarin.Summit
@@ -7,6 +8,6 @@ namespace Xamarin.Summit
     public interface IApiRest
     {
         [Get("/api/info")]
-        Task<XamarinInfoResult> GetInfo();
+        Task<XamarinInfoResult> GetInfoAsync(string code, string dt);
     }
 }
