@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace Xamarin.Summit
 {
     [Headers("Content-Type: application/json")]
-    public interface IApiRestfull
+    public interface IApiRest
     {
         [Get("/api/info")]
         Task<XamarinInfoResult> GetInfo();
