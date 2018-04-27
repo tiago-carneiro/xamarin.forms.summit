@@ -1,4 +1,5 @@
 ﻿using Realms;
+using System;
 
 namespace Xamarin.Summit
 {
@@ -9,8 +10,5 @@ namespace Xamarin.Summit
         public string Descricao { get; set; }
         public string Imagem { get; set; }
         public string Link { get; set; }
-
-        public Informacao Informacao { get; set; }
-        public TimeLine TimeLine { get; set; }
     }
 }

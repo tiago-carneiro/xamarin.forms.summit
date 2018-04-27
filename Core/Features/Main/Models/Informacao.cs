@@ -1,6 +1,5 @@
 ﻿using Realms;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Xamarin.Summit
 {
@@ -14,8 +13,6 @@ namespace Xamarin.Summit
         public string Lon { get; set; }
 
         public IList<Nota> Notas { get; }
-
-        [Backlink(nameof(Pessoa.Informacao))]
-        public IQueryable<Pessoa> Organizacao { get; }
+        public IList<Pessoa> Organizacao { get; }
     }
 }

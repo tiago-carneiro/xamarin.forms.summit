@@ -1,5 +1,5 @@
 ﻿using Realms;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Xamarin.Summit
 {
@@ -8,8 +8,6 @@ namespace Xamarin.Summit
         public string Hora { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
-
-        [Backlink(nameof(Pessoa.TimeLine))]
-        public IQueryable<Pessoa> Palestrantes { get; }
+        public IList<Pessoa> Palestrantes { get; }
     }
 }
