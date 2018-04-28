@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Xamarin.Summit
 {
-    public class TimeLine : RealmObject
+    public class TimeLine : RealmObject, ITimeLine
     {
         public string Hora { get; set; }
         public string Titulo { get; set; }

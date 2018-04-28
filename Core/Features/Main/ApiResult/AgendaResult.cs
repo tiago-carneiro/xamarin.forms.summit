@@ -2,10 +2,8 @@
 
 namespace Xamarin.Summit
 {
-    public class AgendaResult
+    public class AgendaResult : AgendaBase, IAgenda
     {
-        public string Titulo { get; set; }
-        public string Descricao { get; set; }
-        public IEnumerable<TimeLineResult> TimeLine  { get; set; }
+        public IEnumerable<TimeLineResult> TimeLine { get; set; }
     }
 }

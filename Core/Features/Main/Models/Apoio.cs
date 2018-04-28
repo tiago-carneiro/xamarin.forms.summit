@@ -2,7 +2,7 @@
 
 namespace Xamarin.Summit
 {
-    public class Apoio : RealmObject
+    public class Apoio : RealmObject, IApoio
     {
         public string Nome { get; set; }
         public string Imagem { get; set; }

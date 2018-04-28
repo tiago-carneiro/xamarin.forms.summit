@@ -1,8 +1,6 @@
 ﻿namespace Xamarin.Summit
 {
-    public class NotaResult
+    public class NotaResult : NotaBase, INota
     {
-        public string Titulo { get; set; }
-        public string Descricao { get; set; }
     }
 }

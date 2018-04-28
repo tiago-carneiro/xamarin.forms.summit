@@ -1,9 +1,8 @@
 ﻿using Realms;
-using System;
 
 namespace Xamarin.Summit
 {
-    public class Pessoa : RealmObject
+    public class Pessoa : RealmObject, IPessoa
     {
         public string Nome { get; set; }
         public string Titulo { get; set; }

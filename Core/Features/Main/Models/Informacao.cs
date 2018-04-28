@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Xamarin.Summit
 {
-    public class Informacao : RealmObject
+    public class Informacao : RealmObject, IInformacao
     {
         public string Titulo { get; set; }
         public string SubTitulo { get; set; }
