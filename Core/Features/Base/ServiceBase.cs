@@ -2,7 +2,7 @@
 
 namespace Xamarin.Summit
 {
-    public class ServiceBase
+    public abstract class ServiceBase
     {
         ulong SchemaVersion => 0;
         protected Realm GetRealmInstance()

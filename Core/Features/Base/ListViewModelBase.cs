@@ -21,7 +21,8 @@ namespace Xamarin.Summit
 
         protected abstract Task<IEnumerable<TModel>> GetItemsAsync();
 
-        protected virtual async Task ItemClickCommandExecuteAsync(TModel model) { }
+        protected virtual async Task ItemClickCommandExecuteAsync(TModel model)
+            => await Task.FromResult(true);
 
         public override async Task InitializeAsync()
         {
