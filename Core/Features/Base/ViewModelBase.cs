@@ -12,14 +12,7 @@ namespace Xamarin.Summit
             get => _title;
             set => SetProperty(ref _title, value);
         }
-
-        private bool _isBusy;
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
-        }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         protected void SetProperty<TValue>(ref TValue prop, TValue value, [CallerMemberName] string propertyName = "")
         {

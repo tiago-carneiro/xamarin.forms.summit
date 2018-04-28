@@ -126,6 +126,9 @@
   <data name="InfoTitle" xml:space="preserve">
     <value>Informações</value>
   </data>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Deu ruim na busca :/</value>
+  </data>
   <data name="MainTitle" xml:space="preserve">
     <value>Xamarin Summit</value>
   </data>

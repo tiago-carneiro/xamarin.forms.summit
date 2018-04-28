@@ -1,5 +1,4 @@
 ﻿using Refit;
-using System;
 using System.Threading.Tasks;
 
 namespace Xamarin.Summit

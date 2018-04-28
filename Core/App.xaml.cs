@@ -25,7 +25,8 @@ namespace Xamarin.Summit
         void RegisterTypes()
         {
             ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
-            ViewModelLocator.Instance.Register<IInformacaoService, InformacaoService>();
+            ViewModelLocator.Instance.Register<ISummitInfoService, SummitInfoService>();
+            ViewModelLocator.Instance.Register<IInfoService, InfoService>();
 
             ViewModelLocator.Instance.Register<MainViewModel>();
             ViewModelLocator.Instance.Register<InfoViewModel>();

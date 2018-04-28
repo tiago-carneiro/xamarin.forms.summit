@@ -1,49 +1,62 @@
-﻿using Realms;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Realms;
 using Refit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Xamarin.Summit
 {
-    public interface IInformacaoService
+    public interface ISummitInfoService
     {
-        Task LoadInformacoesAsync();
+        Task<LoadInfoResult> LoadInformacoesAsync();
     }
 
-    public class InformacaoService : ServiceBase, IInformacaoService
+    public class SummitInfoService : ServiceBase, ISummitInfoService
     {
         IApiRest Api => RestService.For<IApiRest>(ConstantHelper.ApiUrl);
 
-        public async Task LoadInformacoesAsync()
+        public async Task<LoadInfoResult> LoadInformacoesAsync()
         {
-            var realm = GetRealmInstance();
-            var dataAtualizacao = realm.Find<KeyValueStorage>(KeyValueStorage.DataAtualizacao)?.Value ?? ConstantHelper.UpdateDateDefault;
-
-            var xamarinInfoResult = await Api.GetInfoAsync(ConstantHelper.Code, dataAtualizacao);
-            if (xamarinInfoResult == null)
-                return;
-
-            var pessoas = xamarinInfoResult.Pessoas.Select(s => s.ConvertTo<Pessoa>());
-            var informacoes = GetInformacoes(xamarinInfoResult.Informacoes, pessoas);
-            var apoio = xamarinInfoResult.Apoio.Select(s => s.ConvertTo<Apoio>());
-            var agendas = GetAgendas(xamarinInfoResult.Agenda, pessoas);
-
-            using (var tran = realm.BeginWrite())
+            try
             {
-                CleanDataBase(realm);
+                var realm = GetRealmInstance();
+                var dataAtualizacao = realm.Find<KeyValueStorage>(KeyValueStorage.DataAtualizacao)?.Value ?? ConstantHelper.UpdateDateDefault;
 
-                realm.Add(informacoes);
-                apoio.ToList().ForEach(a => realm.Add(a));
-                agendas.ToList().ForEach(a => realm.Add(a));
+                var xamarinInfoResult = await Api.GetInfoAsync(ConstantHelper.Code, dataAtualizacao);
+                if (xamarinInfoResult == null)
+                    return new LoadInfoResult(true);
 
-                realm.Add(new KeyValueStorage
+                var pessoas = xamarinInfoResult.Pessoas.Select(s => s.ConvertTo<Pessoa>());
+                var informacoes = GetInformacoes(xamarinInfoResult.Informacoes, pessoas);
+                var apoio = xamarinInfoResult.Apoio.Select(s => s.ConvertTo<Apoio>());
+                var agendas = GetAgendas(xamarinInfoResult.Agenda, pessoas);
+
+                using (var tran = realm.BeginWrite())
                 {
-                    Key = KeyValueStorage.DataAtualizacao,
-                    Value = xamarinInfoResult.DataAtualizacao
-                });
+                    CleanDataBase(realm);
 
-                tran.Commit();
+                    realm.Add(informacoes);
+                    apoio.ToList().ForEach(a => realm.Add(a));
+                    agendas.ToList().ForEach(a => realm.Add(a));
+
+                    realm.Add(new KeyValueStorage
+                    {
+                        Key = KeyValueStorage.DataAtualizacao,
+                        Value = xamarinInfoResult.DataAtualizacao
+                    }, true);
+
+                    tran.Commit();
+                }
+
+                return new LoadInfoResult(true);
+            }
+            catch (Exception ex)
+            {
+                return new LoadInfoResult(false, Resource.InternalServerError);
             }
         }
 

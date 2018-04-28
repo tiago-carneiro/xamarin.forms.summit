@@ -1,10 +1,21 @@
-﻿namespace Xamarin.Summit
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace Xamarin.Summit
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel() : base(Resource.MainTitle)
-        {
+        readonly ISummitInfoService _summitInfoService;
 
+        public MainViewModel(ISummitInfoService summitInfoService) : base(Resource.MainTitle)
+        {
+            _summitInfoService = summitInfoService;
+        }
+
+        public override async Task InitializeAsync()
+        {
+            var result = await _summitInfoService.LoadInformacoesAsync();
+            MessagingCenter.Send(this, ConstantHelper.ReloadData, result);
         }
     }
 }
