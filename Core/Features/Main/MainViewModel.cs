@@ -1,6 +1,6 @@
 ﻿namespace Xamarin.Summit
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : ViewModelBase
     {
         public MainViewModel() : base(Resource.MainTitle)
         {

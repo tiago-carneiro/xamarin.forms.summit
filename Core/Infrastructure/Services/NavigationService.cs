@@ -8,13 +8,13 @@ namespace Xamarin.Summit
 {
     public interface INavigationService
     {
-        Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel;
-        Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel;
+        Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase;
+        Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase;
         Task NavigateBackAsync();
-        Task NavigateAndClearBackStackAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel;
+        Task NavigateAndClearBackStackAsync<TViewModel>(object parameter = null) where TViewModel : ViewModelBase;
         Task NavigateAndClearBackStackAsync(Type type, object parameter = null);
-        Task OpenModalAsync<TViewModel>() where TViewModel : BaseViewModel;
-        Task OpenModalAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel;
+        Task OpenModalAsync<TViewModel>() where TViewModel : ViewModelBase;
+        Task OpenModalAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase;
         Task CloseModalAsync();
     }
 
@@ -24,20 +24,20 @@ namespace Xamarin.Summit
 
         static readonly Dictionary<Type, Type> _mappings = new Dictionary<Type, Type>();
 
-        public static void ConfigureMap<TViewModel, TPage>() where TViewModel : BaseViewModel
+        public static void ConfigureMap<TViewModel, TPage>() where TViewModel : ViewModelBase
                                                           where TPage : Page
         {
             if (!_mappings.ContainsKey(typeof(TViewModel)))
                 _mappings.Add(typeof(TViewModel), typeof(TPage));
         }
 
-        public async Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel
+        public async Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
             => await NavigateToAsync(typeof(TViewModel), null, false, false);
 
-        public async Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel
+        public async Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
             => await NavigateToAsync(typeof(TViewModel), parameter, false, false);
 
-        public async Task NavigateAndClearBackStackAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
+        public async Task NavigateAndClearBackStackAsync<TViewModel>(object parameter = null) where TViewModel : ViewModelBase
             => await NavigateToAsync(typeof(TViewModel), parameter, true, false);
 
         public async Task NavigateBackAsync()
@@ -81,9 +81,9 @@ namespace Xamarin.Summit
             await Task.Delay(250);
 
             if (parameter == null)
-                await (page.BindingContext as BaseViewModel).InitializeAsync();
+                await (page.BindingContext as ViewModelBase).InitializeAsync();
             else
-                await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+                await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
         }
 
         public async Task NavigateAndClearBackStackAsync(Type type, object parameter = null)
@@ -105,15 +105,15 @@ namespace Xamarin.Summit
                 throw new Exception($"Mapping type for {viewModelType} is not a page");
 
             var page = Activator.CreateInstance(pageType) as Page;
-            var viewModel = ViewModelLocator.Instance.Resolve(viewModelType) as BaseViewModel;
+            var viewModel = ViewModelLocator.Instance.Resolve(viewModelType) as ViewModelBase;
             page.BindingContext = viewModel;
             return page;
         }
 
-        public async Task OpenModalAsync<TViewModel>() where TViewModel : BaseViewModel
+        public async Task OpenModalAsync<TViewModel>() where TViewModel : ViewModelBase
             => await NavigateToAsync(typeof(TViewModel), null, false, true);
 
-        public async Task OpenModalAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel
+        public async Task OpenModalAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
              => await NavigateToAsync(typeof(TViewModel), parameter, false, true);
 
         public async Task CloseModalAsync()

@@ -13,7 +13,7 @@ namespace Xamarin.Summit
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await (BindingContext as BaseViewModel)?.InitializeAsync();
+            await (BindingContext as ViewModelBase)?.InitializeAsync();
         }
     }
 }

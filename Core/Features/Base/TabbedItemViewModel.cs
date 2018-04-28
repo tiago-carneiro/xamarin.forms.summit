@@ -2,7 +2,7 @@
 
 namespace Xamarin.Summit
 {
-    public abstract class TabbedItemViewModel : BaseViewModel
+    public abstract class TabbedItemViewModel : ViewModelBase
     {
         bool _hasInitialized;
 

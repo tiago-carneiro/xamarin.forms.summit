@@ -10,7 +10,7 @@
         protected override void OnCurrentPageChanged()
         {
             base.OnCurrentPageChanged();
-            Title = (CurrentPage.BindingContext as BaseViewModel).Title;
+            Title = (CurrentPage.BindingContext as ViewModelBase).Title;
         }
     }
 }
