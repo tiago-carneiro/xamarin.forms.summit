@@ -13,7 +13,7 @@ namespace Xamarin.Summit
 
         public ICommand ItemClickCommand { get; }
 
-        protected ListViewModelBase(string title) : base(title)
+        protected ListViewModelBase(string title, bool implementLoadInfoHandle = false) : base(title, implementLoadInfoHandle)
         {
             Items = new ObservableCollection<TModel>();
             ItemClickCommand = new Command<TModel>(async (item) => await ItemClickCommandExecuteAsync(item));
@@ -28,7 +28,10 @@ namespace Xamarin.Summit
         {
             var result = await GetItemsAsync();
             Items.Clear();
-            result.ToList().ForEach(item => Items.Add(item));
+            result?.ToList()?.ForEach(item => Items.Add(item));
+            OnLoadedItems();
         }
+
+        protected virtual void OnLoadedItems() { }
     }
 }

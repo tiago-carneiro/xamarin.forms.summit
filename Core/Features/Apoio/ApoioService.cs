@@ -9,11 +9,16 @@ namespace Xamarin.Summit
         Task<IEnumerable<ApoioWrapper>> GetApoioAsync();
     }
 
-    class ApoioService : ServiceBase, IApoioService
+    public class ApoioService : ServiceBase, IApoioService
     {
         public async Task<IEnumerable<ApoioWrapper>> GetApoioAsync()
-            => await Task.Run(() => 
-                GetRealmInstance().All<Apoio>()?.
-                Select(s => s.ConvertTo<ApoioWrapper>()));
+            => await Task.Run(() =>
+            {
+                using (var realm = GetRealmInstance())
+                {
+                    var apoio = realm.All<Apoio>().ToList();
+                    return apoio.Select(s => s.ConvertTo<ApoioWrapper>()).ToList();
+                }
+            });
     }
 }

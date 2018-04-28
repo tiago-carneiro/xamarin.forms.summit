@@ -8,9 +8,7 @@ namespace Xamarin.Summit
         readonly ISummitInfoService _summitInfoService;
 
         public MainViewModel(ISummitInfoService summitInfoService) : base(Resource.MainTitle)
-        {
-            _summitInfoService = summitInfoService;
-        }
+            => _summitInfoService = summitInfoService;
 
         public override async Task InitializeAsync()
         {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Xamarin.Summit
 {
@@ -8,16 +8,13 @@ namespace Xamarin.Summit
     {
         readonly IApoioService _apoioService;
 
-        public ApoioViewModel(IApoioService apoioService) : base(Resource.ApoioTitle)
-        {
-            _apoioService = apoioService;
-            MessagingCenter.Subscribe<MainViewModel, LoadInfoResult>(this, ConstantHelper.ReloadData, async (sender, args) =>
-            {
-                await InitializeAsync();
-            });
-        }
+        public ApoioViewModel(IApoioService apoioService) : base(Resource.ApoioTitle, true)
+            => _apoioService = apoioService;
 
         protected override async Task<IEnumerable<ApoioWrapper>> GetItemsAsync()
             => await _apoioService.GetApoioAsync();
+
+        protected override void OnLoadedItems()
+            => Message = Items?.FirstOrDefault()?.Nome ?? "Carregado...";
     }
 }

@@ -25,8 +25,11 @@ namespace Xamarin.Summit
         void RegisterTypes()
         {
             ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
-            ViewModelLocator.Instance.Register<ISummitInfoService, SummitInfoService>();
+
+            ViewModelLocator.Instance.Register<IAgendaService, AgendaService>();
+            ViewModelLocator.Instance.Register<IApoioService, ApoioService>();
             ViewModelLocator.Instance.Register<IInfoService, InfoService>();
+            ViewModelLocator.Instance.Register<ISummitInfoService, SummitInfoService>();
 
             ViewModelLocator.Instance.Register<MainViewModel>();
             ViewModelLocator.Instance.Register<InfoViewModel>();
@@ -69,10 +72,8 @@ namespace Xamarin.Summit
         }
 
         void RegisterAppCenter()
-        {
-            AppCenter.Start(ConstantHelper.AppCenterKey,
+        => AppCenter.Start(ConstantHelper.AppCenterKey,
                   typeof(Analytics), typeof(Crashes), typeof(Push));
-        }
 
         async void InitializeAsyc()
             => await ViewModelLocator.Instance.Resolve<INavigationService>().NavigateToAsync<MainViewModel>();

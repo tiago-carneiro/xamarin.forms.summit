@@ -5,7 +5,7 @@
              x:Class="Xamarin.Summit.AgendaPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Agenda!"
+            <Label Text="{Binding Message}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

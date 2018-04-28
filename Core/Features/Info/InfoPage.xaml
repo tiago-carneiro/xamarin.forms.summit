@@ -5,9 +5,9 @@
              x:Class="Xamarin.Summit.InfoPage">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Label Text="{Binding Item.Titulo}"
-                VerticalOptions="Start" 
-                HorizontalOptions="Start" />
+            <Label Text="{Binding Message}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </local:TabbedItemPage>

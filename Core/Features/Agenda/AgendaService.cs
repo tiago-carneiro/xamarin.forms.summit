@@ -6,25 +6,27 @@ namespace Xamarin.Summit
 {
     public interface IAgendaService
     {
-        Task<IEnumerable<AgendaWrapper>> GetAgenda();
+        Task<IEnumerable<AgendaWrapper>> GetAgendaAsync();
     }
 
     public class AgendaService : ServiceBase, IAgendaService
     {
-        public async Task<IEnumerable<AgendaWrapper>> GetAgenda()
+        public async Task<IEnumerable<AgendaWrapper>> GetAgendaAsync()
             => await Task.Run(() =>
                {
-                   var realm = GetRealmInstance();
-                   var agendas = realm.All<Agenda>().ToList();
-                   var result = new List<AgendaWrapper>();
-                   foreach (var item in agendas)
+                   using (var realm = GetRealmInstance())
                    {
-                       var agendaWrapper = item.ConvertTo<AgendaWrapper>();
-                       agendaWrapper.TimeLine = item.TimeLine.Select(s => s.ConvertTo<TimeLineWrapper>());
-                       result.Add(agendaWrapper);
-                   }
+                       var agendas = realm.All<Agenda>().ToList();
+                       var result = new List<AgendaWrapper>();
+                       foreach (var item in agendas)
+                       {
+                           var agendaWrapper = item.ConvertTo<AgendaWrapper>();
+                           agendaWrapper.TimeLine = item.TimeLine.Select(s => s.ConvertTo<TimeLineWrapper>());
+                           result.Add(agendaWrapper);
+                       }
 
-                   return result;
+                       return result;
+                   }
                });
     }
 }

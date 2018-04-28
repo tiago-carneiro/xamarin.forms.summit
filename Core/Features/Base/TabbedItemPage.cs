@@ -8,9 +8,7 @@ namespace Xamarin.Summit
         bool _hasInitialized;
 
         protected TabbedItemPage(Type viewModelType)
-        {
-            BindingContext = ViewModelLocator.Instance.Resolve(viewModelType);
-        }
+            => BindingContext = ViewModelLocator.Instance.Resolve(viewModelType);
 
         protected async override void OnAppearing()
         {

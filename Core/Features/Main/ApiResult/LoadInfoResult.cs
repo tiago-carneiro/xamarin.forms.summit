@@ -1,13 +1,21 @@
 ﻿namespace Xamarin.Summit
 {
+    public enum LoadInfoStatus
+    {
+        None,
+        Updated,
+        Error
+    }
+
     public class LoadInfoResult
     {
-        public LoadInfoResult(bool success, string message = "")
+        public LoadInfoResult(LoadInfoStatus status, string message = "")
         {
             Message = message;
-            Success = success;
+            Status = status;
         }
-        public bool Success { get; private set; }
+
+        public LoadInfoStatus Status { get; private set; }
 
         public string Message { get; private set; }
     }

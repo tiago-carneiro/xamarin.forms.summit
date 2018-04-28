@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Xamarin.Summit
 {
@@ -8,16 +8,13 @@ namespace Xamarin.Summit
     {
         readonly IAgendaService _agendaService;
 
-        public AgendaViewModel(IAgendaService agendaService) : base(Resource.AgendaTitle)
-        {
-            _agendaService = agendaService;
-            MessagingCenter.Subscribe<MainViewModel, LoadInfoResult>(this, ConstantHelper.ReloadData, async (sender, args) =>
-            {
-                await InitializeAsync();
-            });
-        }
+        public AgendaViewModel(IAgendaService agendaService) : base(Resource.AgendaTitle, true)
+            => _agendaService = agendaService;
 
         protected override async Task<IEnumerable<AgendaWrapper>> GetItemsAsync()
-            => await _agendaService.GetAgenda();
+            => await _agendaService.GetAgendaAsync();
+
+        protected override void OnLoadedItems()
+            => Message = Items?.FirstOrDefault()?.Descricao ?? "Carregando";
     }
 }

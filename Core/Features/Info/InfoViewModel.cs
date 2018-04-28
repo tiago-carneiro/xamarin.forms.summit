@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Xamarin.Summit
 {
@@ -7,18 +6,13 @@ namespace Xamarin.Summit
     {
         readonly IInfoService _infoService;
         
-        public InfoViewModel(IInfoService infoService) : base(Resource.InfoTitle)
-        {
-            _infoService = infoService;
-
-            MessagingCenter.Subscribe<MainViewModel, LoadInfoResult>(this, ConstantHelper.ReloadData, async (sender, args) =>
-            {
-                if (args.Success)
-                    await InitializeAsync();
-            });
-        }
+        public InfoViewModel(IInfoService infoService) : base(Resource.InfoTitle, true)
+            => _infoService = infoService;
 
         protected async override Task<InformacaoWrapper> GetItemAsync()
             => await _infoService.GetItemAsync();
+
+        protected override void OnLoadedItem()
+            => Message = Item?.Descricao ?? "Carregando..";
     }
 }

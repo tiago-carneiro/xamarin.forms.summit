@@ -5,7 +5,7 @@
              x:Class="Xamarin.Summit.ApoioPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Apoio!"
+            <Label Text="{Binding Message}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
