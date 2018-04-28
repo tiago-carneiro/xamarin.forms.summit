@@ -4,10 +4,13 @@
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.InfoPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Info!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Label Text="{Binding Message}" IsVisible="{Binding Show}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+            <Label Text="{Binding Informacao.Titulo}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
         </StackLayout>
     </ContentPage.Content>
 </local:TabbedItemPage>

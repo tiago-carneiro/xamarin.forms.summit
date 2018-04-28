@@ -12,5 +12,6 @@
 
         public const string UpdateDateDefault = "2018-01-01";
 
+        public const string ReloadData = "reload_data";
     }
 }
