@@ -5,10 +5,7 @@
              x:Class="Xamarin.Summit.InfoPage">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Label Text="{Binding Message}" IsVisible="{Binding Show}"
-                VerticalOptions="Start" 
-                HorizontalOptions="Start" />
-            <Label Text="{Binding Informacao.Titulo}"
+            <Label Text="{Binding Item.Titulo}"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" />
         </StackLayout>
