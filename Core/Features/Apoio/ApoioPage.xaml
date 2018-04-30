@@ -4,20 +4,24 @@
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.ApoioPage">
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <!--<Label Text="{Binding Message}"
+
+        <Label  Text="{Binding Message}"
                 IsVisible="{Binding ShowMessage}"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />-->
+                HorizontalOptions="CenterAndExpand" />
 
-        <ListView VerticalOptions="FillAndExpand" 
-                   HasUnevenRows="true"
-                      HorizontalOptions="FillAndExpand"   
-                      ItemsSource="{Binding Items}"
-                      local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
+        <ListView   VerticalOptions="FillAndExpand" 
+                    HasUnevenRows="true"
+                    HorizontalOptions="FillAndExpand"   
+                    ItemsSource="{Binding Items}"
+                    CachingStrategy="RecycleElement"
+                    GroupDisplayBinding="{Binding Key}"
+                    IsGroupingEnabled="true"
+                    local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">           
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Image Aspect="AspectFill" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                        <Image VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
                             </Image.Source>
