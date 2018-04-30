@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin.Summit.TabHeaderItem"
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0" x:Name="ItemView" HeightRequest="50">
+
+    <Label x:Name="lblTitle" TextColor="Gray" 
+           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+           HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+           Margin="4" FontAttributes="Bold"/>
+
+    <BoxView x:Name="bxView" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="LightGray"/>
+</StackLayout>
