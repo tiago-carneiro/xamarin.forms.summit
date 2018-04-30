@@ -13,8 +13,5 @@ namespace Xamarin.Summit
 
         protected override async Task<IEnumerable<ApoioWrapper>> GetItemsAsync()
             => await _apoioService.GetApoioAsync();
-
-        protected override void OnLoadedItems()
-            => Message = Items?.FirstOrDefault()?.Nome ?? "Carregado...";
     }
 }

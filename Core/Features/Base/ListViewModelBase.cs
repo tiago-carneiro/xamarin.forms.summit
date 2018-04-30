@@ -30,6 +30,7 @@ namespace Xamarin.Summit
             Items.Clear();
             result?.ToList()?.ForEach(item => Items.Add(item));
             OnLoadedItems();
+            Message = "";
         }
 
         protected virtual void OnLoadedItems() { }

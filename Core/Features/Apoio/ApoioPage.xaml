@@ -3,11 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.ApoioPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Message}"
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!--<Label Text="{Binding Message}"
+                IsVisible="{Binding ShowMessage}"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+                HorizontalOptions="CenterAndExpand" />-->
+
+        <ListView VerticalOptions="FillAndExpand" 
+                   HasUnevenRows="true"
+                      HorizontalOptions="FillAndExpand"   
+                      ItemsSource="{Binding Items}"
+                      local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Image Aspect="AspectFill" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </local:TabbedItemPage>
