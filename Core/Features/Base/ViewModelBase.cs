@@ -1,12 +1,13 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Xamarin.Summit
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : NotifyPropertyChanged
     {
+        bool _canHandle = false;
+        bool _mainLoaded = false;
+
         private string _title;
         public string Title
         {
@@ -32,35 +33,33 @@ namespace Xamarin.Summit
             set => SetProperty(ref _showMessage, value);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void SetProperty<TValue>(ref TValue prop, TValue value, [CallerMemberName] string propertyName = "")
-        {
-            prop = value;
-            RaisePropertyChanged(propertyName);
-        }
-
-        protected void RaisePropertyChanged(string propertyName)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         protected ViewModelBase(string title, bool implementLoadInfoHandle = false)
         {
             Title = title;
-            if(implementLoadInfoHandle)
+            Message = Resource.LoadingMessage;
+            if (implementLoadInfoHandle)
                 MessagingCenter.Subscribe<MainViewModel, LoadInfoResult>(this, ConstantHelper.ReloadData,
                     async (sender, args) => await LoadInfoHandleAsync(args));
+
         }
 
         public virtual async Task InitializeAsync()
-            => await Task.FromResult(true);
+            => _canHandle = true;
 
         public virtual async Task InitializeAsync(object parameter)
-            => await Task.FromResult(true);
+            => _canHandle = true;
 
         async Task LoadInfoHandleAsync(LoadInfoResult info)
         {
+            _mainLoaded = true;
+            if (!_canHandle)
+                return;
+
             switch (info.Status)
             {
                 case LoadInfoStatus.None:
+                    ValidateLoad();
                     break;
                 case LoadInfoStatus.Updated:
                     await InitializeAsync();
@@ -69,6 +68,14 @@ namespace Xamarin.Summit
                     Message = info.Message;
                     break;
             }
+        }
+
+        protected virtual void ValidateLoad() { }
+
+        protected virtual void EmptyLoad()
+        {
+            if (_mainLoaded)
+                Message = Resource.EmptyLoadMessage;
         }
     }
 }

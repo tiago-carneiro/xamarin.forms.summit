@@ -18,7 +18,7 @@ namespace Xamarin.Summit
                 return;
             _hasInitialized = true;
 
-            await (BindingContext as ViewModelBase)?.InitializeAsync();
+           await (BindingContext as ViewModelBase)?.InitializeAsync();
         }
     }
 }

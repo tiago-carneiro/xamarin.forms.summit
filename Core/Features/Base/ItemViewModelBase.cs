@@ -19,10 +19,19 @@ namespace Xamarin.Summit
 
         public override async Task InitializeAsync()
         {
+            await base.InitializeAsync();
             Item = await GetItemAsync();
-            OnLoadedItem();
+            ValidateLoad();
         }
 
         protected virtual void OnLoadedItem() { }
+
+        protected override void ValidateLoad()
+        {
+            if (Item != null)
+                OnLoadedItem();
+            else
+                EmptyLoad();
+        }
     }
 }

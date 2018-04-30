@@ -36,15 +36,23 @@ namespace Xamarin.Summit
 
         public override async Task InitializeAsync()
         {
+            await base.InitializeAsync();
             var result = await GetItemsAsync();
             Items.Clear();
             AddItems(result);
-            OnLoadedItems();
-            Message = "";
+            ValidateLoad();
         }
 
         protected abstract void AddItems(IEnumerable<TModel> items);
 
         protected virtual void OnLoadedItems() { }
+
+        protected override void ValidateLoad()
+        {
+            if (Items.Any())
+                OnLoadedItems();
+            else
+                EmptyLoad();
+        }
     }
 }
