@@ -4,12 +4,7 @@
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.ApoioPage">
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-
-        <Label  Text="{Binding Message}"
-                IsVisible="{Binding ShowMessage}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-
+        
         <ListView   VerticalOptions="FillAndExpand" 
                     HasUnevenRows="true"
                     HorizontalOptions="FillAndExpand"   
@@ -30,5 +25,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Label  Text="{Binding Message}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        
     </Grid>
 </local:TabbedItemPage>

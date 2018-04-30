@@ -13,6 +13,6 @@ namespace Xamarin.Summit
             => await _infoService.GetItemAsync();
 
         protected override void OnLoadedItem()
-            => Message = Item?.Descricao ?? "Carregando..";
+            => Message = Item?.Descricao;
     }
 }

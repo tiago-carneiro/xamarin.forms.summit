@@ -79,6 +79,33 @@ namespace Xamarin.Summit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dia 1.
+        /// </summary>
+        public static string DayOneTitle {
+            get {
+                return ResourceManager.GetString("DayOneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dia 2.
+        /// </summary>
+        public static string DayTwoTitle {
+            get {
+                return ResourceManager.GetString("DayTwoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não temos dados pra mostrar....
+        /// </summary>
+        public static string EmptyLoadMessage {
+            get {
+                return ResourceManager.GetString("EmptyLoadMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Informações.
         /// </summary>
         public static string InfoTitle {
@@ -93,6 +120,15 @@ namespace Xamarin.Summit {
         public static string InternalServerError {
             get {
                 return ResourceManager.GetString("InternalServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carregando....
+        /// </summary>
+        public static string LoadingMessage {
+            get {
+                return ResourceManager.GetString("LoadingMessage", resourceCulture);
             }
         }
         

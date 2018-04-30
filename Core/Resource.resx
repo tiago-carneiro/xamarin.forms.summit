@@ -123,11 +123,23 @@
   <data name="ApoioTitle" xml:space="preserve">
     <value>Apoio</value>
   </data>
+  <data name="DayOneTitle" xml:space="preserve">
+    <value>Dia 1</value>
+  </data>
+  <data name="DayTwoTitle" xml:space="preserve">
+    <value>Dia 2</value>
+  </data>
+  <data name="EmptyLoadMessage" xml:space="preserve">
+    <value>Não temos dados pra mostrar...</value>
+  </data>
   <data name="InfoTitle" xml:space="preserve">
     <value>Informações</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Deu ruim na busca :/</value>
+  </data>
+  <data name="LoadingMessage" xml:space="preserve">
+    <value>Carregando...</value>
   </data>
   <data name="MainTitle" xml:space="preserve">
     <value>Xamarin Summit</value>

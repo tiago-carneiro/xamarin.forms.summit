@@ -5,7 +5,7 @@
              x:Class="Xamarin.Summit.InfoPage">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Label Text="{Binding Message}"
+            <Label Text="{Binding Message}" IsVisible="{Binding ShowMessage}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
