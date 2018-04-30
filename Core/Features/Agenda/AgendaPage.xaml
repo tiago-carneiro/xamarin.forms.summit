@@ -4,10 +4,26 @@
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.AgendaPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Message}"
+
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <local:TabHeaderItem Grid.Row="0" Grid.Column="0" Header="{Binding HeaderOne}" Current="{Binding CurrentHeader}" Command="{Binding HeaderClickCommand}" />
+            <local:TabHeaderItem Grid.Row="0" Grid.Column="1" Header="{Binding HeaderTwo}" Current="{Binding CurrentHeader}" Command="{Binding HeaderClickCommand}" />
+
+
+            <Label Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Message}"
+                IsVisible="{Binding ShowMessage}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        </Grid>
     </ContentPage.Content>
 </local:TabbedItemPage>
