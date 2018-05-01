@@ -27,6 +27,7 @@
         </ListView>
 
         <Label  Text="{Binding Message}"
+                IsVisible="{Binding ShowMessage}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         
