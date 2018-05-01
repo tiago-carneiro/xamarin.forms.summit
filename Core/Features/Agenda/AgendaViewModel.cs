@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,6 +12,8 @@ namespace Xamarin.Summit
         readonly IAgendaService _agendaService;
 
         public ICommand HeaderClickCommand { get; }
+
+        public ObservableCollection<TimeLineWrapper> TimeLine { get; }
 
         private AgendaHeaderWrapper _headerOne = new AgendaHeaderWrapper { Titulo = Resource.DayOneTitle };
         public AgendaHeaderWrapper HeaderOne
@@ -25,7 +28,7 @@ namespace Xamarin.Summit
             get => _headerTwo;
             set => SetProperty(ref _headerTwo, value);
         }
-        
+
         private AgendaHeaderWrapper _currentHeader;
         public AgendaHeaderWrapper CurrentHeader
         {
@@ -39,25 +42,42 @@ namespace Xamarin.Summit
 
             HeaderClickCommand = new Command<AgendaHeaderWrapper>(async (item) => await HeaderClickCommandExecuteAsync(item));
             CurrentHeader = HeaderOne;
+            TimeLine = new ObservableCollection<TimeLineWrapper>();
         }
 
         protected override async Task<IEnumerable<AgendaWrapper>> GetItemsAsync()
             => await _agendaService.GetAgendaAsync();
 
-        protected override void OnLoadedItems()
+        protected override void OnLoadedData()
         {
-            Message = Items?.FirstOrDefault()?.Descricao ?? Message;
-            if (Items.Any())
-            {
-                HeaderOne = GetAgendaHeader(0);
-                HeaderTwo = GetAgendaHeader(1);
-            }
+            base.OnLoadedData();
+
+            HeaderOne = GetAgendaHeader(0);
+            HeaderTwo = GetAgendaHeader(1);
+
+            LoadTimeLine(CurrentHeader.Index);
         }
 
         AgendaHeaderWrapper GetAgendaHeader(int index)
-            =>  new AgendaHeaderWrapper { Index = 0, Titulo = Items[index].Descricao };
+            => new AgendaHeaderWrapper { Index = index, Titulo = Items[index].Descricao };
 
         async Task HeaderClickCommandExecuteAsync(AgendaHeaderWrapper header)
-            => CurrentHeader = header;
+            => SetCurrentItems(header);
+
+        void SetCurrentItems(AgendaHeaderWrapper header)
+        {
+            if (CurrentHeader == header)
+                return;
+
+            CurrentHeader = header;
+            LoadTimeLine(CurrentHeader.Index);
+        }
+
+        void LoadTimeLine(int index)
+        {
+            TimeLine.Clear();
+            if (Items.Any())
+                Items[index].TimeLine.ToList().ForEach(i => TimeLine.Add(i));
+        }
     }
 }
