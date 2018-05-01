@@ -77,5 +77,10 @@ namespace Xamarin.Summit
             if (_mainLoaded)
                 Message = Resource.EmptyLoadMessage;
         }
+
+        protected virtual void OnLoadedData()
+        {
+            Message = "";
+        }
     }
 }

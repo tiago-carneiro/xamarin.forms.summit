@@ -45,12 +45,10 @@ namespace Xamarin.Summit
 
         protected abstract void AddItems(IEnumerable<TModel> items);
 
-        protected virtual void OnLoadedItems() { }
-
         protected override void ValidateLoad()
         {
             if (Items.Any())
-                OnLoadedItems();
+                OnLoadedData();
             else
                 EmptyLoad();
         }

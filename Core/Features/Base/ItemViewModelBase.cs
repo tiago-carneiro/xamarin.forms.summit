@@ -24,7 +24,10 @@ namespace Xamarin.Summit
             ValidateLoad();
         }
 
-        protected virtual void OnLoadedItem() { }
+        protected virtual void OnLoadedItem()
+        {
+            Message = "";
+        }
 
         protected override void ValidateLoad()
         {
