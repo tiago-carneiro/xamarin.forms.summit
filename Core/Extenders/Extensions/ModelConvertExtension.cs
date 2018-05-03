@@ -23,6 +23,7 @@
         public static T ConvertTo<T>(this IPessoa pessoa) where T : IPessoa, new()
             => new T
             {
+                Id = pessoa.Id,
                 Descricao = pessoa.Descricao,
                 Imagem = pessoa.Imagem,
                 Link = pessoa.Link,
@@ -50,6 +51,7 @@
         public static T ConvertTo<T>(this ITimeLine timeLine) where T : ITimeLine, new()
             => new T
             {
+                Id = timeLine.Id,
                 Descricao = timeLine.Descricao,
                 Hora = timeLine.Hora,
                 Titulo = timeLine.Titulo
