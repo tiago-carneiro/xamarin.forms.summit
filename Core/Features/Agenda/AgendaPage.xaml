@@ -19,6 +19,7 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
+            
             <local:TabHeaderItem x:Name="HeaderOne" Grid.Row="0" Grid.Column="0" Header="{Binding HeaderOne}" Current="{Binding CurrentHeader}" Command="{Binding HeaderClickCommand}" />
             <local:TabHeaderItem x:Name="HeaderTwo" Grid.Row="0" Grid.Column="1" Header="{Binding HeaderTwo}" Current="{Binding CurrentHeader}" Command="{Binding HeaderClickCommand}" />
 
@@ -29,7 +30,7 @@
                     HorizontalOptions="FillAndExpand"   
                     ItemsSource="{Binding TimeLine}"
                     CachingStrategy="RecycleElement"
-                    local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
+                    local:AttachedItemTappedBehavior.Command="{Binding TimeLineClickCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -43,7 +44,7 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Column="0" Grid.RowSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Margin="16, 8, 8, 16" Text="{Binding Hora}"/>
+                                <Label Grid.Column="0" Grid.RowSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Margin="16, 8, 8, 16" Text="{Binding Hora}"/>
 
                                 <Label Grid.Column="1" Grid.Row="0" Margin="0, 8, 16, 0" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="16" Text="{Binding Titulo}"/>
                                 <Label Grid.Column="1" Grid.Row="1" Margin="0, 0, 16, 8" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" FontSize="14" Text="{Binding Descricao}"/>

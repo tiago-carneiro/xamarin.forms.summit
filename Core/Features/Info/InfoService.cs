@@ -20,8 +20,8 @@ namespace Xamarin.Summit
                         return null;
 
                     var result = informacao.ConvertTo<InformacaoWrapper>();
-                    result.Notas = informacao.Notas.Select(s => s.ConvertTo<NotaWrapper>());
-                    result.Organizacao = informacao.Organizacao.Select(s => s.ConvertTo<OrganizacaoWrapper>());
+                    result.Notas = informacao.Notas.Select(s => s.ConvertTo<NotaWrapper>()).ToList();
+                    result.Organizacao = informacao.Organizacao.AsEnumerable().Select(s => s.ConvertTo<OrganizacaoWrapper>()).ToList();
                     return result;
                 }
             });

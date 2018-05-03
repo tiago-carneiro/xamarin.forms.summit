@@ -10,8 +10,10 @@ namespace Xamarin.Summit
     public class AgendaViewModel : ListViewModelBase<AgendaWrapper>
     {
         readonly IAgendaService _agendaService;
+        readonly INavigationService _navigationService;
 
         public ICommand HeaderClickCommand { get; }
+        public ICommand TimeLineClickCommand { get; }
 
         public ObservableCollection<TimeLineWrapper> TimeLine { get; }
 
@@ -36,11 +38,14 @@ namespace Xamarin.Summit
             set => SetProperty(ref _currentHeader, value);
         }
 
-        public AgendaViewModel(IAgendaService agendaService) : base(Resource.AgendaTitle, true)
+        public AgendaViewModel(IAgendaService agendaService, INavigationService navigationService) : base(Resource.AgendaTitle, true)
         {
             _agendaService = agendaService;
+            _navigationService = navigationService;
 
             HeaderClickCommand = new Command<AgendaHeaderWrapper>(async (item) => await HeaderClickCommandExecuteAsync(item));
+            TimeLineClickCommand = new Command<TimeLineWrapper>(async (item) => await TimeLineClickCommandExecuteAsync(item));
+
             CurrentHeader = HeaderOne;
             TimeLine = new ObservableCollection<TimeLineWrapper>();
         }
@@ -79,5 +84,8 @@ namespace Xamarin.Summit
             if (Items.Any())
                 Items[index].TimeLine.ToList().ForEach(i => TimeLine.Add(i));
         }
+
+        async Task TimeLineClickCommandExecuteAsync(TimeLineWrapper model)
+            => await _navigationService.NavigateToAsync<PalestraViewModel>(new PalestraParameter { Id = model.Id });
     }
 }
