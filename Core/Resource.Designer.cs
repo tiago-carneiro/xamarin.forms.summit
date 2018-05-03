@@ -140,5 +140,14 @@ namespace Xamarin.Summit {
                 return ResourceManager.GetString("MainTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Palestra.
+        /// </summary>
+        public static string PalestraTitle {
+            get {
+                return ResourceManager.GetString("PalestraTitle", resourceCulture);
+            }
+        }
     }
 }

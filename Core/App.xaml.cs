@@ -30,11 +30,13 @@ namespace Xamarin.Summit
             ViewModelLocator.Instance.Register<IApoioService, ApoioService>();
             ViewModelLocator.Instance.Register<IInfoService, InfoService>();
             ViewModelLocator.Instance.Register<ISummitInfoService, SummitInfoService>();
+            ViewModelLocator.Instance.Register<IPalestraService, PalestraService>();
 
             ViewModelLocator.Instance.Register<MainViewModel>();
             ViewModelLocator.Instance.Register<InfoViewModel>();
             ViewModelLocator.Instance.Register<AgendaViewModel>();
             ViewModelLocator.Instance.Register<ApoioViewModel>();
+            ViewModelLocator.Instance.Register<PalestraViewModel>();
 
             ViewModelLocator.Instance.Build();
         }
@@ -45,6 +47,7 @@ namespace Xamarin.Summit
             NavigationService.ConfigureMap<InfoViewModel, InfoPage>();
             NavigationService.ConfigureMap<AgendaViewModel, AgendaPage>();
             NavigationService.ConfigureMap<ApoioViewModel, ApoioPage>();
+            NavigationService.ConfigureMap<PalestraViewModel, PalestraPage>();
         }
 
         void ConfigurePushNotification()

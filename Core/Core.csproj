@@ -26,6 +26,9 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Main\MainPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Features\Palestra\PalestraPage.xaml.cs">
+      <DependentUpon>PalestraPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
