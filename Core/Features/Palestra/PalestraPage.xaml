@@ -1,8 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Xamarin.Summit.PalestraPage">
-    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-      
-    </Grid>
+             xmlns:local="clr-namespace:Xamarin.Summit"
+             x:Class="Xamarin.Summit.PalestraPage"
+             Title="{Binding Title}">
+    <ListView   VerticalOptions="FillAndExpand" 
+                HasUnevenRows="true"
+                HorizontalOptions="FillAndExpand"   
+                ItemsSource="{Binding Item.Palestrantes}"
+                CachingStrategy="RecycleElement"
+                local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}"
+                SeparatorVisibility="None">
+        <ListView.Header>
+            <StackLayout>
+                <Label Text="{Binding Item.Titulo}" FontSize="Large" Margin="16" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding Item.Descricao}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Margin="16, 0, 16, 16"/>
+            </StackLayout>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="16, 0, 16, 16">
+                        <Label Text="{Binding Nome}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        <local:ImageCircle HorizontalOptions="Center" VerticalOptions="CenterAndExpand" HeightRequest="100" >
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
+                            </Image.Source>
+                        </local:ImageCircle>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

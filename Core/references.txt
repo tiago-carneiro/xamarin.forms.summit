@@ -7,3 +7,6 @@ BottomTabbedPageRenderer
 
 https://montemagno.com/xamarin-forms-android-selected-and-unselected-tab-colors/
 BottomTabbedPageRenderer - change colors
+
+https://blog.xamarin.com/elegant-circle-images-in-xamarin-forms/
+ImageCircle 

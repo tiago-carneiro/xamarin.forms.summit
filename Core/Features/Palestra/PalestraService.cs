@@ -16,7 +16,7 @@ namespace Xamarin.Summit
             {
                 var timeLine = realm.Find<TimeLine>(id);
                 var palestra = timeLine.ConvertTo<PalestraWrapper>();
-                palestra.Palestrantes = timeLine.Palestrantes.AsEnumerable().Select(s => new PalestranteWrapper { Nome = s.Nome, Imagem = s.Imagem }).ToList();
+                palestra.Palestrantes = timeLine.Palestrantes.AsEnumerable().Select(s => new PalestranteWrapper { Id = s.Id, Nome = s.Nome, Imagem = s.Imagem }).ToList();
                 return palestra;
             }
         }

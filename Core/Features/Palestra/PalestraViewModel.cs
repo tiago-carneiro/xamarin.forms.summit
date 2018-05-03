@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Xamarin.Summit
 {
@@ -7,8 +9,13 @@ namespace Xamarin.Summit
         readonly IPalestraService _palestraService;
         string _id;
 
+        public ICommand ItemClickCommand { get; }
+
         public PalestraViewModel(IPalestraService palestraService) : base(Resource.PalestraTitle, true)
-            => _palestraService = palestraService;
+        {
+            _palestraService = palestraService;
+            ItemClickCommand = new Command<PalestranteWrapper>(async (item) => await ItemClickCommandExecuteAsync(item));
+        }
 
         protected override async Task<PalestraWrapper> GetItemAsync()
             => await _palestraService.GetPalestraAsync(_id);
@@ -24,6 +31,11 @@ namespace Xamarin.Summit
         {
             base.OnLoadedData();
             var lista = Item.Palestrantes;
+        }
+
+        async Task ItemClickCommandExecuteAsync(PalestranteWrapper item)
+        {
+
         }
     }
 }
