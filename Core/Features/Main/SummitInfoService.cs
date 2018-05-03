@@ -23,6 +23,7 @@ namespace Xamarin.Summit
             {
                 using (var realm = GetRealmInstance())
                 {
+                    //return new LoadInfoResult(LoadInfoStatus.None);
                     //var dataAtualizacao = realm.Find<KeyValueStorage>(KeyValueStorage.DataAtualizacao)?.Value ?? ConstantHelper.UpdateDateDefault;
 
                     //var xamarinInfoResult = await Api.GetInfoAsync(ConstantHelper.Code, dataAtualizacao);
@@ -33,18 +34,26 @@ namespace Xamarin.Summit
 
                     await Task.Delay(TimeSpan.FromSeconds(7));
 
-                    var pessoas = xamarinInfoResult.Pessoas.Select(s => s.ConvertTo<Pessoa>());
-                    var informacoes = GetInformacoes(xamarinInfoResult.Informacoes, pessoas);
-                    var apoio = xamarinInfoResult.Apoio.Select(s => s.ConvertTo<Apoio>());
-                    var agendas = GetAgendas(xamarinInfoResult.Agenda, pessoas);
-
                     using (var tran = realm.BeginWrite())
                     {
                         CleanDataBase(realm);
+                        var pessoas = xamarinInfoResult.Pessoas.Select(s => s.ConvertTo<Pessoa>()).ToList();
 
-                        realm.Add(informacoes);
-                        apoio.ToList().ForEach(a => realm.Add(a));
-                        agendas.ToList().ForEach(a => realm.Add(a));
+                        var informacoes = GetInformacoes(xamarinInfoResult.Informacoes);
+
+                        foreach (var item in xamarinInfoResult.Informacoes.Organizacao)
+                        {
+                            var pessoa = pessoas.FirstOrDefault(w => w.Nome == item);
+                            pessoa.Organizacao = informacoes;
+                        }
+
+                        var apoio = xamarinInfoResult.Apoio.Select(s => s.ConvertTo<Apoio>());
+                        var agendas = GetAgendas(xamarinInfoResult.Agenda, pessoas);
+
+                        pessoas.ToList().ForEach(p => realm.Add(p));
+                        realm.Add(informacoes, true);
+                        apoio.ToList().ForEach(a => realm.Add(a, true));
+                        agendas.ToList().ForEach(a => realm.Add(a, true));
 
                         realm.Add(new KeyValueStorage
                         {
@@ -58,22 +67,17 @@ namespace Xamarin.Summit
                     return new LoadInfoResult(LoadInfoStatus.Updated);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return new LoadInfoResult(LoadInfoStatus.Error, Resource.InternalServerError);
             }
         }
 
-        Informacao GetInformacoes(InformacoesResult informacaoResult, IEnumerable<Pessoa> pessoas)
+        Informacao GetInformacoes(InformacoesResult informacaoResult)
         {
             var informacao = informacaoResult.ConvertTo<Informacao>();
             informacaoResult.Notas.ToList().ForEach(n =>
                 informacao.Notas.Add(n.ConvertTo<Nota>()));
-
-            pessoas.Where(w =>
-                informacaoResult.Organizacao.Contains(w.Nome)
-                ).ToList().ForEach(p =>
-                    informacao.Organizacao.Add(p));
 
             return informacao;
         }
@@ -97,10 +101,12 @@ namespace Xamarin.Summit
             if (!string.IsNullOrEmpty(timeLineResult.Palestrante))
             {
                 var nomes = timeLineResult.Palestrante.Split(',');
-                pessoas.Where(w =>
-                    nomes.Contains(w.Nome)
-                ).ToList().ForEach(p =>
-                    timeLine.Palestrantes.Add(p));
+
+                foreach (var item in nomes)
+                {
+                    var pessoa = pessoas.FirstOrDefault(w => w.Nome == item);
+                    pessoa.TimeLine.Add(timeLine);
+                }
             }
             return timeLine;
         }
