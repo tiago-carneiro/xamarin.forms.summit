@@ -144,7 +144,10 @@
   <data name="MainTitle" xml:space="preserve">
     <value>Xamarin Summit</value>
   </data>
+  <data name="PalestranteTitle" xml:space="preserve">
+    <value>Palestrante</value>
+  </data>
   <data name="PalestraTitle" xml:space="preserve">
-    <value>Palestra</value>
+    <value>Talk</value>
   </data>
 </root>

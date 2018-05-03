@@ -8,5 +8,5 @@ namespace Xamarin.Summit
         {
             InitializeComponent();
         }
-	}
+    }
 }

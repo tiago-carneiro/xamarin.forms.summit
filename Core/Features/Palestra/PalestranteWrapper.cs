@@ -1,9 +1,6 @@
 ﻿namespace Xamarin.Summit
 {
-    public class PalestranteWrapper
+    public class PalestranteWrapper : PessoaBase, IPessoa
     {
-        public string Id { get; set; }
-        public string Nome { get; set; }
-        public string Imagem { get; set; }
     }
 }

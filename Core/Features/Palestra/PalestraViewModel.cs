@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -7,13 +8,15 @@ namespace Xamarin.Summit
     public class PalestraViewModel : ItemViewModelBase<PalestraWrapper>
     {
         readonly IPalestraService _palestraService;
+        readonly INavigationService _navigationService;
         string _id;
 
         public ICommand ItemClickCommand { get; }
 
-        public PalestraViewModel(IPalestraService palestraService) : base(Resource.PalestraTitle, true)
+        public PalestraViewModel(IPalestraService palestraService, INavigationService navigationService) : base(Resource.PalestraTitle, true)
         {
             _palestraService = palestraService;
+            _navigationService = navigationService;
             ItemClickCommand = new Command<PalestranteWrapper>(async (item) => await ItemClickCommandExecuteAsync(item));
         }
 
@@ -27,15 +30,10 @@ namespace Xamarin.Summit
             await base.InitializeAsync();
         }
 
-        protected override void OnLoadedData()
-        {
-            base.OnLoadedData();
-            var lista = Item.Palestrantes;
-        }
-
         async Task ItemClickCommandExecuteAsync(PalestranteWrapper item)
         {
-
+            if (!string.IsNullOrEmpty(item.Link))
+                await Task.Run(() => Device.OpenUri(new Uri(item.Link)));
         }
     }
 }
