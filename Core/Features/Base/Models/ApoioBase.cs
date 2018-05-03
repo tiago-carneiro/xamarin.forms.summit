@@ -9,7 +9,7 @@
         int Ordem { get; set; }
     }
 
-    public class ApoioBase : IApoio
+    public abstract class ApoioBase : IApoio
     {
         public string Nome { get; set; }
         public string Imagem { get; set; }
