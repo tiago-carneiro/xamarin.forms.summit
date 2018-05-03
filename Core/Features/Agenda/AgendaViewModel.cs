@@ -86,6 +86,9 @@ namespace Xamarin.Summit
         }
 
         async Task TimeLineClickCommandExecuteAsync(TimeLineWrapper model)
-            => await _navigationService.NavigateToAsync<PalestraViewModel>(new PalestraParameter { Id = model.Id });
+        {
+            if (model.Palestra)
+                await _navigationService.NavigateToAsync<PalestraViewModel>(new PalestraParameter { Id = model.Id });
+        }
     }
 }

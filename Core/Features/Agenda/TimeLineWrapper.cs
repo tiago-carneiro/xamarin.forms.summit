@@ -2,5 +2,6 @@
 {
     public class TimeLineWrapper : TimeLineBase, ITimeLine
     {
+        public bool Palestra { get; set; }
     }
 }

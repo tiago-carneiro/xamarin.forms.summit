@@ -25,7 +25,8 @@ namespace Xamarin.Summit
                            agendaWrapper.TimeLine = item.TimeLine.Select(s =>
                            {
                                var timeLine = new TimeLineWrapper { Hora = s.Hora, Id = s.Id, Titulo = s.Titulo };
-                               timeLine.Descricao = s.Palestrantes.Any() ? string.Join(", ", s.Palestrantes.AsEnumerable().Select(p => p.Nome)) : s.Descricao;
+                               timeLine.Palestra = s.Palestrantes.Any();
+                               timeLine.Descricao = timeLine.Palestra ? string.Join(", ", s.Palestrantes.AsEnumerable().Select(p => p.Nome)) : s.Descricao;
                                return timeLine;
                            }).ToList();
                            result.Add(agendaWrapper);
