@@ -11,10 +11,11 @@ namespace Xamarin.Summit
 {
     public partial class App : Application
     {
+        public static int DisplayScreenWidth { get; set; }
+
         public App()
         {
             InitializeComponent();
-
             RegisterTypes();
             ConfigureMap();
             ConfigurePushNotification();

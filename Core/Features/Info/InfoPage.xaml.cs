@@ -5,6 +5,8 @@
         public InfoPage() : base(typeof(InfoViewModel))
         {
             InitializeComponent();
+            //listView.ItemSelected += (s, e)
+            //    => listView.SelectedItem = null;
         }
     }
 }

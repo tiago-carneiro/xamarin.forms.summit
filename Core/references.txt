@@ -10,3 +10,5 @@ BottomTabbedPageRenderer - change colors
 
 https://blog.xamarin.com/elegant-circle-images-in-xamarin-forms/
 ImageCircle 
+
+https://github.com/mattregul/Xamarin_Screensize

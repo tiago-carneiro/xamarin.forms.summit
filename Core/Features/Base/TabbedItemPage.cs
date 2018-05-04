@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Xamarin.Summit
@@ -16,6 +17,8 @@ namespace Xamarin.Summit
 
             if (_hasInitialized)
                 return;
+
+            await Task.Delay(200);
             _hasInitialized = true;
 
            await (BindingContext as ViewModelBase)?.InitializeAsync();

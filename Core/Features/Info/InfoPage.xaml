@@ -3,11 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.InfoPage">
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Label Text="{Binding Message}" IsVisible="{Binding ShowMessage}"
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="enderecoTemplate">
+                <ViewCell IsEnabled="False">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <Label Text="{Binding Dados.Local}" FontSize="15" HorizontalTextAlignment="Center" Margin="16"/>
+                        <Image HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding Dados.Mapa}" CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
+                        <Label Text="Organização" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="16"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="notaTemplate">
+                <ViewCell IsEnabled="False">
+                    <StackLayout Margin="16">
+                        <Label Text="{Binding Dados.Titulo}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding Dados.Descricao}" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="organizacaoTemplate">
+                <ViewCell IsEnabled="False">
+                    <StackLayout Margin="16, 0, 16, 16">
+                        <Label Text="{Binding Dados.Nome}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <local:ImageCircle HorizontalOptions="Center" HeightRequest="100">
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding Dados.Imagem}" CachingEnabled="true"/>
+                            </Image.Source>
+                        </local:ImageCircle>
+                        <Label Text="{Binding Dados.Descricao}" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <local:InfoDataTemplateSelector x:Key="infoDataTemplateSelector"
+                EnderecoTemplate="{StaticResource enderecoTemplate}"
+                NotaTemplate="{StaticResource notaTemplate}"
+                OrganizacaoTemplate="{StaticResource organizacaoTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <ListView   x:Name="listView" VerticalOptions="FillAndExpand" 
+                HasUnevenRows="true"
+                HorizontalOptions="FillAndExpand"   
+                ItemsSource="{Binding Items}"
+                CachingStrategy="RecycleElement"
+                SeparatorVisibility="None"
+                ItemTemplate="{StaticResource infoDataTemplateSelector}">
+            <ListView.Header>
+                <StackLayout Margin="16">
+                    <Label Text="{Binding Item.Titulo}" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding Item.SubTitulo}" FontSize="18" HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding Item.Descricao}" HorizontalTextAlignment="Center" Margin="0, 8, 0, 0"/>
+                </StackLayout>
+            </ListView.Header>
+        </ListView>
+
+        <Label  Text="{Binding Message}"
+                IsVisible="{Binding ShowMessage}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    </Grid>
+
 </local:TabbedItemPage>
