@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Util;
 using Microsoft.AppCenter.Push;
 
 namespace Xamarin.Summit.Android
@@ -18,9 +19,13 @@ namespace Xamarin.Summit.Android
 
             base.OnCreate(bundle);
 
+            App.DisplayScreenWidth = Resources.DisplayMetrics.WidthPixels;
+
+
             Push.SetSenderId(ConstantHelper.CloudMessageID);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
             LoadApplication(new App());
         }
     }
