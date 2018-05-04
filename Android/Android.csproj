@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\BottomTabbedPageRenderer.cs" />
+    <Compile Include="Controls\HtmlFormattedLabelRenderer.cs" />
     <Compile Include="Controls\ImageCircleRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
