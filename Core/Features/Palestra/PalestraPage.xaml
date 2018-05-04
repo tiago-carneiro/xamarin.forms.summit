@@ -14,7 +14,7 @@
         <ListView.Header>
             <StackLayout>
                 <Label Text="{Binding Item.Titulo}" FontSize="Large" FontAttributes="Bold" Margin="16" />
-                <Label Text="{Binding Item.Descricao}" HorizontalOptions="FillAndExpand" 
+                <local:HtmlFormattedLabel Text="{Binding Item.Descricao}" HorizontalOptions="FillAndExpand" 
                        VerticalOptions="StartAndExpand" Margin="16, 0, 16, 24"/>
             </StackLayout>
         </ListView.Header>

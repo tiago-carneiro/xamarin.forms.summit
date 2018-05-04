@@ -19,11 +19,11 @@ namespace Xamarin.Summit.Android
         protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
         {
             base.OnElementChanged(e);
-
-            var view = (HtmlFormattedLabel)Element;
-            if (view == null) return;
+            
+            if (Control == null) return;
+           
             ISpanned htmlText;
-            var text = view.Text.ToString();
+            var text = Control.Text;
             if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
                 htmlText = Html.FromHtml(text, Html.FromHtmlModeLegacy);
             else

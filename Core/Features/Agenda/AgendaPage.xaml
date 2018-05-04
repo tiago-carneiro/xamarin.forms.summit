@@ -53,7 +53,7 @@
                                 <Label Grid.Column="1" Grid.Row="0" Margin="0, 8, 16, 0"
                                        VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" 
                                        FontAttributes="Bold" FontSize="16" Text="{Binding Titulo}"/>
-                                <local:HtmlFormattedLabel Grid.Column="1" Grid.Row="1" Margin="0, 0, 16, 8" 
+                                <Label Grid.Column="1" Grid.Row="1" Margin="0, 0, 16, 8" 
                                                           VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand"
                                                           FontSize="14" Text="{Binding Descricao}"/>
 
