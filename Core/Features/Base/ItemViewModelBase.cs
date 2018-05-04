@@ -11,9 +11,8 @@ namespace Xamarin.Summit
             set => SetProperty(ref _item, value);
         }
 
-        protected ItemViewModelBase(string title, bool implementLoadInfoHandle = false) : base(title, implementLoadInfoHandle)
-        {
-        }
+        protected ItemViewModelBase(string title, bool implementLoadInfoHandle = false) 
+            : base(title, implementLoadInfoHandle) { }
 
         protected abstract Task<TModel> GetItemAsync();
 

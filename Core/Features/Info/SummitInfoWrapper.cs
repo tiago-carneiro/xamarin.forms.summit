@@ -10,7 +10,6 @@
     public class SummitInfoWrapper
     {
         public SummitInfoType Tipo { get; set; }
-
         public object Dados { get; set; }
     }
 }

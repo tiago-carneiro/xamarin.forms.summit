@@ -4,9 +4,11 @@ using System.Linq;
 
 namespace Xamarin.Summit
 {
-    public abstract class GroupedListViewModelBase<TGroup, TModel> : ListViewModelBase<IGrouping<TGroup, TModel>, TModel> where TModel : class
+    public abstract class GroupedListViewModelBase<TGroup, TModel> 
+        : ListViewModelBase<IGrouping<TGroup, TModel>, TModel> where TModel : class
     {
-        protected GroupedListViewModelBase(string title, bool implementLoadInfoHandle = false) : base(title, implementLoadInfoHandle)
+        protected GroupedListViewModelBase(string title, bool implementLoadInfoHandle = false) 
+            : base(title, implementLoadInfoHandle)
         {
         }
 

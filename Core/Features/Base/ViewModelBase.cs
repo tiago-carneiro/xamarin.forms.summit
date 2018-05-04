@@ -33,7 +33,6 @@ namespace Xamarin.Summit
             set => SetProperty(ref _showMessage, value);
         }
 
-
         protected ViewModelBase(string title, bool implementLoadInfoHandle = false)
         {
             Title = title;
@@ -79,8 +78,6 @@ namespace Xamarin.Summit
         }
 
         protected virtual void OnLoadedData()
-        {
-            Message = "";
-        }
+            => Message = "";
     }
 }

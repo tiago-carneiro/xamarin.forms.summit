@@ -3,9 +3,7 @@
     public partial class MainPage : BottomTabbedPage
     {
         public MainPage()
-        {
-            InitializeComponent();
-        }
+            => InitializeComponent();
 
         protected override void OnCurrentPageChanged()
         {

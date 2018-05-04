@@ -13,16 +13,21 @@
                 local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
         <ListView.Header>
             <StackLayout>
-                <Label Text="{Binding Item.Titulo}" FontSize="Large" FontAttributes="Bold" Margin="16" HorizontalTextAlignment="Center"/>
-                <Label Text="{Binding Item.Descricao}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Margin="16, 0, 16, 24"/>
+                <Label Text="{Binding Item.Titulo}" FontSize="Large" FontAttributes="Bold"
+                       Margin="16" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding Item.Descricao}" HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="StartAndExpand" Margin="16, 0, 16, 24"/>
             </StackLayout>
         </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="16, 0, 16, 16">
-                        <Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
-                        <local:ImageCircle HorizontalOptions="Center" VerticalOptions="CenterAndExpand" HeightRequest="100" Source="Icon">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 Margin="16, 0, 16, 16">
+                        <Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" 
+                               VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        <local:ImageCircle HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+                                           HeightRequest="100" Source="Icon">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
                             </Image.Source>

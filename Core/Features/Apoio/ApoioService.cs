@@ -1,24 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Xamarin.Summit
 {
     public interface IApoioService
     {
-        Task<IEnumerable<ApoioWrapper>> GetApoioAsync();
+        IEnumerable<ApoioWrapper> GetApoio();
     }
 
     public class ApoioService : ServiceBase, IApoioService
     {
-        public async Task<IEnumerable<ApoioWrapper>> GetApoioAsync()
-            => await Task.Run(() =>
+        public IEnumerable<ApoioWrapper> GetApoio()
+        {
+            using (var realm = GetRealmInstance())
             {
-                using (var realm = GetRealmInstance())
-                {
-                    var apoio = realm.All<Apoio>().ToList();
-                    return apoio.Select(s => s.ConvertTo<ApoioWrapper>()).ToList();
-                }
-            });
+                var apoio = realm.All<Apoio>().AsEnumerable();
+                return apoio.Select(s => s.ConvertTo<ApoioWrapper>()).ToList();
+            }
+        }
     }
 }

@@ -7,26 +7,29 @@ using Xamarin.Forms;
 
 namespace Xamarin.Summit
 {
-    public abstract class ListViewModelBase<TModel> : ListViewModelBase<TModel, TModel> where TModel : class
+    public abstract class ListViewModelBase<TModel>
+        : ListViewModelBase<TModel, TModel> where TModel : class
     {
-        protected ListViewModelBase(string title, bool implementLoadInfoHandle = false) : base(title, implementLoadInfoHandle)
-        {
-        }
+        protected ListViewModelBase(string title, bool implementLoadInfoHandle = false)
+            : base(title, implementLoadInfoHandle) { }
 
         protected override void AddItems(IEnumerable<TModel> items)
             => items?.ToList()?.ForEach(item => Items.Add(item));
     }
 
-    public abstract class ListViewModelBase<TList, TModel> : ViewModelBase where TModel : class
+    public abstract class ListViewModelBase<TList, TModel> 
+        : ViewModelBase where TModel : class
     {
         public ObservableCollection<TList> Items { get; }
 
         public ICommand ItemClickCommand { get; }
 
-        protected ListViewModelBase(string title, bool implementLoadInfoHandle = false) : base(title, implementLoadInfoHandle)
+        protected ListViewModelBase(string title, bool implementLoadInfoHandle = false) 
+            : base(title, implementLoadInfoHandle)
         {
             Items = new ObservableCollection<TList>();
-            ItemClickCommand = new Command<TModel>(async (item) => await ItemClickCommandExecuteAsync(item));
+            ItemClickCommand = new Command<TModel>(async (item) 
+                => await ItemClickCommandExecuteAsync(item));
         }
 
         protected abstract Task<IEnumerable<TModel>> GetItemsAsync();

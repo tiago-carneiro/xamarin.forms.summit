@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-
-namespace Xamarin.Summit
+﻿namespace Xamarin.Summit
 {
     public class EnderecoWrapper
     {

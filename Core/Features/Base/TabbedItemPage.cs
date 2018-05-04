@@ -18,9 +18,8 @@ namespace Xamarin.Summit
             if (_hasInitialized)
                 return;
 
-            await Task.Delay(200);
             _hasInitialized = true;
-
+            await Task.Delay(200);
            await (BindingContext as ViewModelBase)?.InitializeAsync();
         }
     }

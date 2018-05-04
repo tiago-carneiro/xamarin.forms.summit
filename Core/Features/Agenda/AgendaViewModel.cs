@@ -17,14 +17,14 @@ namespace Xamarin.Summit
 
         public ObservableCollection<TimeLineWrapper> TimeLine { get; }
 
-        private AgendaHeaderWrapper _headerOne = new AgendaHeaderWrapper { Titulo = Resource.DayOneTitle };
+        private AgendaHeaderWrapper _headerOne;
         public AgendaHeaderWrapper HeaderOne
         {
             get => _headerOne;
             set => SetProperty(ref _headerOne, value);
         }
 
-        private AgendaHeaderWrapper _headerTwo = new AgendaHeaderWrapper { Titulo = Resource.DayTwoTitle };
+        private AgendaHeaderWrapper _headerTwo;
         public AgendaHeaderWrapper HeaderTwo
         {
             get => _headerTwo;
@@ -38,20 +38,26 @@ namespace Xamarin.Summit
             set => SetProperty(ref _currentHeader, value);
         }
 
-        public AgendaViewModel(IAgendaService agendaService, INavigationService navigationService) : base(Resource.AgendaTitle, true)
+        public AgendaViewModel(IAgendaService agendaService, INavigationService navigationService) 
+            : base(Resource.AgendaTitle, true)
         {
             _agendaService = agendaService;
             _navigationService = navigationService;
 
-            HeaderClickCommand = new Command<AgendaHeaderWrapper>(async (item) => await HeaderClickCommandExecuteAsync(item));
-            TimeLineClickCommand = new Command<TimeLineWrapper>(async (item) => await TimeLineClickCommandExecuteAsync(item));
+            HeaderClickCommand = new Command<AgendaHeaderWrapper>(async (item) 
+                                        => await HeaderClickCommandExecuteAsync(item));
+            TimeLineClickCommand = new Command<TimeLineWrapper>(async (item)
+                                        => await TimeLineClickCommandExecuteAsync(item));
+
+            HeaderOne = new AgendaHeaderWrapper { Titulo = Resource.DayOneTitle };
+            HeaderTwo = new AgendaHeaderWrapper { Titulo = Resource.DayTwoTitle };
 
             CurrentHeader = HeaderOne;
             TimeLine = new ObservableCollection<TimeLineWrapper>();
         }
 
         protected override async Task<IEnumerable<AgendaWrapper>> GetItemsAsync()
-            => await _agendaService.GetAgendaAsync();
+            => _agendaService.GetAgenda();
 
         protected override void OnLoadedData()
         {
@@ -88,7 +94,8 @@ namespace Xamarin.Summit
         async Task TimeLineClickCommandExecuteAsync(TimeLineWrapper model)
         {
             if (model.Palestra)
-                await _navigationService.NavigateToAsync<PalestraViewModel>(new PalestraParameter { Id = model.Id });
+                await _navigationService.NavigateToAsync<PalestraViewModel>(
+                                new PalestraParameter { Id = model.Id });
         }
     }
 }

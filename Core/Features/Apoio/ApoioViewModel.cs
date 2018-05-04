@@ -13,12 +13,12 @@ namespace Xamarin.Summit
             => _apoioService = apoioService;
 
         protected override async Task<IEnumerable<ApoioWrapper>> GetItemsAsync()
-            => await _apoioService.GetApoioAsync();
+            => _apoioService.GetApoio();
 
         protected override Func<ApoioWrapper, string> GroupBy()
             => x => x.Categoria;
 
         protected override async Task ItemClickCommandExecuteAsync(ApoioWrapper model)
-            => await Task.Run(() => Device.OpenUri(new Uri(model.Link)));
+            => Device.OpenUri(new Uri(model.Link));
     }
 }

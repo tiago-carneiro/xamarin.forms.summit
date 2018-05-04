@@ -1,7 +1,5 @@
 ﻿using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

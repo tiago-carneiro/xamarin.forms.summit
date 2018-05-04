@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Xamarin.Summit
@@ -7,9 +6,7 @@ namespace Xamarin.Summit
     public partial class TabHeaderItem : StackLayout
     {
         public TabHeaderItem()
-        {
-            InitializeComponent();
-        }
+            => InitializeComponent();
 
         Color DefaultColor => Color.LightGray;
         Color PrimaryColor => (Color)Application.Current.Resources["PrimaryColor"];
@@ -24,7 +21,8 @@ namespace Xamarin.Summit
             set => SetValue(HeaderProperty, value);
         }
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(TabHeaderItem), null, propertyChanged: OnItemTappedChanged);
+        public static readonly BindableProperty CommandProperty = 
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(TabHeaderItem), null, propertyChanged: OnItemTappedChanged);
 
         public ICommand Command
         {
@@ -40,14 +38,9 @@ namespace Xamarin.Summit
             get => (AgendaHeaderWrapper)GetValue(CurrentProperty);
             set => SetValue(CurrentProperty, value);
         }
-
-
+        
         private static void OnCurrentChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var self = bindable as TabHeaderItem;
-            var header = (AgendaHeaderWrapper)newValue;
-            self.lblTitle.Text = header?.Titulo;
-        }
+            => (bindable as TabHeaderItem).lblTitle.Text = (newValue as AgendaHeaderWrapper).Titulo;
 
         private static void OnSelectedChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -72,9 +65,8 @@ namespace Xamarin.Summit
             if (control != null)
             {
                 var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += (sender, e) =>
-                    control?.Command?.Execute(control.Header);
-
+                tapGestureRecognizer.Tapped += (sender, e) 
+                    => control?.Command?.Execute(control.Header);
                 control.GestureRecognizers.Add(tapGestureRecognizer);
             }
         }

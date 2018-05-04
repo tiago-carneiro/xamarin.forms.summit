@@ -1,29 +1,28 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 
 namespace Xamarin.Summit
 {
     public interface IInfoService
     {
-        Task<InformacaoWrapper> GetItemAsync();
+        InformacaoWrapper GetItem();
     }
 
     public class InfoService : ServiceBase, IInfoService
     {
-        public async Task<InformacaoWrapper> GetItemAsync()
-            => await Task.Run(() =>
+        public InformacaoWrapper GetItem()
+        {
+            using (var realm = GetRealmInstance())
             {
-                using (var realm = GetRealmInstance())
-                {
-                    var informacao = realm.All<Informacao>().FirstOrDefault();
-                    if (informacao == null)
-                        return null;
+                var informacao = realm.All<Informacao>().FirstOrDefault();
+                if (informacao == null)
+                    return null;
 
-                    var result = informacao.ConvertTo<InformacaoWrapper>();
-                    result.Notas = informacao.Notas.Select(s => s.ConvertTo<NotaWrapper>()).ToList();
-                    result.Organizacao = informacao.Organizacao.AsEnumerable().Select(s => s.ConvertTo<OrganizacaoWrapper>()).ToList();
-                    return result;
-                }
-            });
+                var result = informacao.ConvertTo<InformacaoWrapper>();
+                result.Notas = informacao.Notas.Select(s => s.ConvertTo<NotaWrapper>()).ToList();
+                result.Organizacao = informacao.Organizacao.AsEnumerable().Select(s =>
+                                        s.ConvertTo<OrganizacaoWrapper>()).ToList();
+                return result;
+            }
+        }
     }
 }

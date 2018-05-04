@@ -15,33 +15,16 @@ namespace Xamarin.Summit
                 validateValue: null,
                 propertyChanged: OnItemTappedChanged);
 
-
-        private static ICommand GetItemTapped(BindableObject bindable)
-        {
-            return (ICommand)bindable.GetValue(CommandProperty);
-        }
-
-        private static void SetItemTapped(BindableObject bindable, ICommand value)
-        {
-            bindable.SetValue(CommandProperty, value);
-        }
-
         private static void OnItemTappedChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = bindable as ListView;
-            if (control != null)
-                control.ItemTapped += OnItemTapped;
-        }
+            => (bindable as ListView).ItemTapped += (sender, e) =>
+            {
+                var control = sender as ListView;
+                var command = (ICommand)control.GetValue(CommandProperty);
 
-        private static void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var control = sender as ListView;
-            var command = GetItemTapped(control);
+                if (command != null && command.CanExecute(e.Item))
+                    command.Execute(e.Item);
 
-            if (command != null && command.CanExecute(e.Item))
-                command.Execute(e.Item);
-
-            control.SelectedItem = null;
-        }
+                control.SelectedItem = null;
+            };
     }
 }

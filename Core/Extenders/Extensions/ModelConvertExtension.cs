@@ -56,6 +56,5 @@
                 Hora = timeLine.Hora,
                 Titulo = timeLine.Titulo
             };
-
     }
 }

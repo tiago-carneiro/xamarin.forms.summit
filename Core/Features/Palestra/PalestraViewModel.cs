@@ -13,27 +13,28 @@ namespace Xamarin.Summit
 
         public ICommand ItemClickCommand { get; }
 
-        public PalestraViewModel(IPalestraService palestraService, INavigationService navigationService) : base(Resource.PalestraTitle, true)
+        public PalestraViewModel(IPalestraService palestraService, INavigationService navigationService)
+            : base(Resource.PalestraTitle, true)
         {
             _palestraService = palestraService;
             _navigationService = navigationService;
-            ItemClickCommand = new Command<PalestranteWrapper>(async (item) => await ItemClickCommandExecuteAsync(item));
+            ItemClickCommand = new Command<PalestranteWrapper>(async (item)
+                                => await ItemClickCommandExecuteAsync(item));
         }
 
         protected override async Task<PalestraWrapper> GetItemAsync()
-            => await _palestraService.GetPalestraAsync(_id);
+            => _palestraService.GetPalestra(_id);
 
         public override async Task InitializeAsync(object parameter)
         {
-            var palestraParameter = parameter as PalestraParameter;
-            _id = palestraParameter.Id;
+            _id = (parameter as PalestraParameter).Id;
             await base.InitializeAsync();
         }
 
         async Task ItemClickCommandExecuteAsync(PalestranteWrapper item)
         {
             if (!string.IsNullOrEmpty(item.Link))
-                await Task.Run(() => Device.OpenUri(new Uri(item.Link)));
+                Device.OpenUri(new Uri(item.Link));
         }
     }
 }

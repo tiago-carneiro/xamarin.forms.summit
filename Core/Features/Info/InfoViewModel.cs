@@ -16,16 +16,21 @@ namespace Xamarin.Summit
             Items = new ObservableCollection<SummitInfoWrapper>();
         }
         protected async override Task<InformacaoWrapper> GetItemAsync()
-            => await _infoService.GetItemAsync();
+            => _infoService.GetItem();
 
         protected override void OnLoadedData()
         {
             base.OnLoadedData();
 
             Items.Clear();
-            Item.Notas.ToList().ForEach(n => Items.Add(new SummitInfoWrapper { Dados = n, Tipo = SummitInfoType.Nota }));
-            Items.Add(new SummitInfoWrapper { Tipo = SummitInfoType.Endereco, Dados = new EnderecoWrapper { Lat = Item.Lat, Local = Item.Local, Lon = Item.Lon } });
-            Item.Organizacao.ToList().ForEach(n => Items.Add(new SummitInfoWrapper { Dados = n, Tipo = SummitInfoType.Organizacao }));
+            Item.Notas.ToList().ForEach(n => Items.Add(
+                            new SummitInfoWrapper { Dados = n, Tipo = SummitInfoType.Nota }));
+            Items.Add(new SummitInfoWrapper {
+                                Tipo = SummitInfoType.Endereco,
+                                Dados = new EnderecoWrapper {
+                                            Lat = Item.Lat, Local = Item.Local, Lon = Item.Lon } });
+            Item.Organizacao.ToList().ForEach(n 
+                    => Items.Add(new SummitInfoWrapper { Dados = n, Tipo = SummitInfoType.Organizacao }));
         }
     }
 }

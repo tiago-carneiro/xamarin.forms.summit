@@ -5,8 +5,6 @@ namespace Xamarin.Summit
     public partial class PalestraPage : ContentPage
     {
         public PalestraPage()
-        {
-            InitializeComponent();
-        }
+            => InitializeComponent();
     }
 }
