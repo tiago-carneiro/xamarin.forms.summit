@@ -8,7 +8,7 @@
             <DataTemplate x:Key="enderecoTemplate">
                 <ViewCell IsEnabled="False">
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
-                        <Label Text="{Binding Dados.Local}" FontSize="15" HorizontalTextAlignment="Center" Margin="16"/>
+                        <Label Text="{Binding Dados.Local}" HorizontalTextAlignment="Center" FontSize="15" Margin="16"/>
                         <Image HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Dados.Mapa}" CachingEnabled="true"/>
@@ -21,8 +21,8 @@
             <DataTemplate x:Key="notaTemplate">
                 <ViewCell IsEnabled="False">
                     <StackLayout Margin="16">
-                        <Label Text="{Binding Dados.Titulo}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                        <Label Text="{Binding Dados.Descricao}" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding Dados.Titulo}" FontSize="16" FontAttributes="Bold" />
+                        <Label Text="{Binding Dados.Descricao}" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
@@ -55,9 +55,9 @@
                 ItemTemplate="{StaticResource infoDataTemplateSelector}">
             <ListView.Header>
                 <StackLayout Margin="16">
-                    <Label Text="{Binding Item.Titulo}" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
-                    <Label Text="{Binding Item.SubTitulo}" FontSize="18" HorizontalTextAlignment="Center" />
-                    <Label Text="{Binding Item.Descricao}" HorizontalTextAlignment="Center" Margin="0, 8, 0, 0"/>
+                    <Label Text="{Binding Item.Titulo}" HorizontalTextAlignment="Center" FontSize="26" FontAttributes="Bold" />
+                    <Label Text="{Binding Item.SubTitulo}" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Label Text="{Binding Item.Descricao}" Margin="0, 8, 0, 0" LineBreakMode="WordWrap"/>
                 </StackLayout>
             </ListView.Header>
         </ListView>
