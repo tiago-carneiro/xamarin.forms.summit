@@ -13,8 +13,7 @@
                 local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
         <ListView.Header>
             <StackLayout>
-                <Label Text="{Binding Item.Titulo}" FontSize="Large" FontAttributes="Bold"
-                       Margin="16" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding Item.Titulo}" FontSize="Large" FontAttributes="Bold" Margin="16" />
                 <Label Text="{Binding Item.Descricao}" HorizontalOptions="FillAndExpand" 
                        VerticalOptions="StartAndExpand" Margin="16, 0, 16, 24"/>
             </StackLayout>
@@ -32,7 +31,7 @@
                                 <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
                             </Image.Source>
                         </local:ImageCircle>
-                        <Label Text="{Binding Descricao}" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding Descricao}" HorizontalTextAlignment="Center"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
