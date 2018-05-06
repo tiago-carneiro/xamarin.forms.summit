@@ -30,7 +30,7 @@
                 <ViewCell IsEnabled="False">
                     <StackLayout Margin="16, 0, 16, 16">
                         <Label Text="{Binding Dados.Nome}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                        <local:ImageCircle HorizontalOptions="Center" HeightRequest="100">
+                        <local:ImageCircle HorizontalOptions="Center" HeightRequest="100" VerticalOptions="Center" WidthRequest="100">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Dados.Imagem}" CachingEnabled="true"/>
                             </Image.Source>
