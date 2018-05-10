@@ -26,7 +26,7 @@
                         <Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" 
                                VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
                         <local:ImageCircle HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
-                                           HeightRequest="100" Source="Icon">
+                                           HeightRequest="100" WidthRequest="100" Source="Icon">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
                             </Image.Source>
