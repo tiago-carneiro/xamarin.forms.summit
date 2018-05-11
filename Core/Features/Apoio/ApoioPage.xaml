@@ -9,14 +9,21 @@
                     HasUnevenRows="true"
                     HorizontalOptions="FillAndExpand"   
                     ItemsSource="{Binding Items}"
-                    CachingStrategy="RecycleElement"
-                    GroupDisplayBinding="{Binding Key}"
+                    CachingStrategy="RecycleElement"                    
                     IsGroupingEnabled="true"
-                    local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">           
+                    BackgroundColor="White"
+                    local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Margin="16" Text="{Binding Key}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Image VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                        <Image VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="White">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
                             </Image.Source>
