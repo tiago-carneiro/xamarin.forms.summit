@@ -12,11 +12,14 @@
                     CachingStrategy="RecycleElement"                    
                     IsGroupingEnabled="true"
                     BackgroundColor="White"
+                    SeparatorColor="Transparent"
                     local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
-            <ListView.GroupHeaderTemplate>
+            <ListView.GroupHeaderTemplate> 
                 <DataTemplate>
                     <ViewCell>
-                        <Label Margin="16" Text="{Binding Key}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="#ebebeb">
+                            <Label Margin="16" Text="{Binding Key}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
