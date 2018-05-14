@@ -9,11 +9,14 @@
                 <ViewCell IsEnabled="False">
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                         <Label Text="{Binding Dados.Local}" HorizontalTextAlignment="Center" FontSize="15" Margin="16"/>
-                        <Image HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
-                            <Image.Source>
-                                <UriImageSource Uri="{Binding Dados.Mapa}" CachingEnabled="true"/>
-                            </Image.Source>
-                        </Image>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+                            <Image HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HeightRequest="250">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding Dados.Mapa}" CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
+                            <Button  Command="{Binding OpenMapCommand}" TextColor="White"  BackgroundColor="{StaticResource PrimaryColor}" Text="Ver mapa" HorizontalOptions="End" VerticalOptions="EndAndExpand" Margin="16"/>
+                        </Grid>
                         <Label Text="Organização" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="16"/>
                     </StackLayout>
                 </ViewCell>

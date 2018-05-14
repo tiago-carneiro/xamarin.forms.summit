@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Xamarin.Summit
 {
@@ -8,12 +11,23 @@ namespace Xamarin.Summit
     {
         readonly IInfoService _infoService;
 
+        public ICommand OpenMapCommand { get; }
+
         public ObservableCollection<SummitInfoWrapper> Items { get; }
 
         public InfoViewModel(IInfoService infoService) : base(Resource.InfoTitle, true)
         {
             _infoService = infoService;
+
+            OpenMapCommand = new Command<EnderecoWrapper>(ExecuteOpenMapCommand);
+
             Items = new ObservableCollection<SummitInfoWrapper>();
+        }
+
+        private void ExecuteOpenMapCommand(EnderecoWrapper obj)
+        {
+            var uri = new Uri(obj.MapaDirect);
+            Device.OpenUri(uri);
         }
         protected async override Task<InformacaoWrapper> GetItemAsync()
             => _infoService.GetItem();
