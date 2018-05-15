@@ -10,15 +10,16 @@ namespace Xamarin.Summit
     public class InfoViewModel : ItemViewModelBase<InformacaoWrapper>
     {
         readonly IInfoService _infoService;
-
-
+        readonly IScreenSizeService _screenSizeService;
+        
         public ICommand OpenMapCommand { get; }
 
         public ObservableCollection<SummitInfoWrapper> Items { get; }
 
-        public InfoViewModel(IInfoService infoService) : base(Resource.InfoTitle, true)
+        public InfoViewModel(IInfoService infoService, IScreenSizeService screenSizeService) : base(Resource.InfoTitle, true)
         {
             _infoService = infoService;
+            _screenSizeService = screenSizeService;
 
             OpenMapCommand = new Command<EnderecoWrapper>(ExecuteOpenMapCommand);
 
@@ -62,7 +63,8 @@ namespace Xamarin.Summit
                 {
                     Lat = Item.Lat,
                     Local = Item.Local,
-                    Lon = Item.Lon
+                    Lon = Item.Lon,
+                    DisplayScreenWidth = _screenSizeService.Width
                 }
             });
             Item.Organizacao.ToList().ForEach(n

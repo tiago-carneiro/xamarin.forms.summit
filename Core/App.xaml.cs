@@ -1,4 +1,5 @@
-﻿using Microsoft.AppCenter;
+﻿using Autofac.Core;
+using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Push;
@@ -14,10 +15,10 @@ namespace Xamarin.Summit
     {
         public static int DisplayScreenWidth { get; set; }
 
-        public App()
+        public App(params IModule[] platformSpecificModules)
         {
             InitializeComponent();
-            RegisterTypes();
+            PrepareContainer(platformSpecificModules);
             ConfigureMap();
             RegisterAppCenter();
         }
@@ -28,8 +29,10 @@ namespace Xamarin.Summit
             await InitializeAsyc();
         }
 
-        void RegisterTypes()
+        void PrepareContainer(IModule[] platformSpecificModules)
         {
+            ViewModelLocator.Instance.RegisterModules(platformSpecificModules);
+
             ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
 
             ViewModelLocator.Instance.Register<IAgendaService, AgendaService>();

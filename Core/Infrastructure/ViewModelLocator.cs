@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Core;
 using System;
 
 namespace Xamarin.Summit
@@ -22,6 +23,12 @@ namespace Xamarin.Summit
 
         public void Register<TInterface, TImplementation>() where TImplementation : TInterface
             => _containerBuilder.RegisterType<TImplementation>().As<TInterface>();
+
+        public void RegisterModules(IModule[] platformSpecificModules)
+        {
+            foreach (var platformSpecificModule in platformSpecificModules)
+                _containerBuilder.RegisterModule(platformSpecificModule);
+        }
 
         public void Register<T>() where T : class
             => _containerBuilder.RegisterType<T>();

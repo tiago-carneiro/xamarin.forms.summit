@@ -13,3 +13,5 @@ ImageCircle
 
 https://github.com/mattregul/Xamarin_Screensize
 Screensize
+
+https://www.itmagination.com/en/booster/the-autofac-ioc-container-in-xamarin.forms
