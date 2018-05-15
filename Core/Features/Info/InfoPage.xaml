@@ -7,17 +7,22 @@
         <ResourceDictionary>
             <DataTemplate x:Key="enderecoTemplate">
                 <ViewCell >
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Margin="16">
-                        <Label Text="{Binding Dados.Local}" HorizontalTextAlignment="Center" FontSize="15" Margin="16"/>
-                        <Image HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HeightRequest="250">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Text="{Binding Dados.Local}" HorizontalTextAlignment="Center" FontSize="15" Margin="16"/>
+                        <Image Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Aspect="AspectFill" HeightRequest="230">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Dados.Mapa}" CachingEnabled="true"/>
                             </Image.Source>
                         </Image>
-                        <Button Clicked="OpenMap_Clicked" TextColor="White"      
+                        <Button Grid.Row="1" Clicked="OpenMap_Clicked" TextColor="White"      
                                          BackgroundColor="{StaticResource PrimaryColor}" Text="Ver mapa" 
-                                     HorizontalOptions="End" VerticalOptions="EndAndExpand" Margin="16"/>
-                        <Label Text="Organização" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="16"/>
+                                     HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="16"/>
+                        <Label Grid.Row="2" Text="Organização" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="16"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -49,7 +54,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <ListView   x:Name="listView" VerticalOptions="FillAndExpand" 
+        <ListView   x:Name="listView" ItemSelected="listview_OnItemSelected"  VerticalOptions="FillAndExpand" 
                 HasUnevenRows="true"
                 HorizontalOptions="FillAndExpand"   
                 ItemsSource="{Binding Items}"

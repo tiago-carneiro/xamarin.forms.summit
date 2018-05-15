@@ -10,6 +10,5 @@ namespace Xamarin.Summit
         public string Lon { get; set; }
 
         public string Mapa => $"https://maps.googleapis.com/maps/api/staticmap?center={Lat},{Lon}&zoom=18&size={App.DisplayScreenWidth}x400&maptype=roadmap&markers=color:red%7C{Lat},{Lon}";
-        public string MapaDirect => $"https://www.google.com/maps/search/?api=1&query={Lat},{Lon}";
     }
 }
