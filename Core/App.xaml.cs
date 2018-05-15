@@ -1,7 +1,9 @@
-﻿using Microsoft.AppCenter;
+﻿using Autofac.Core;
+using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Push;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,17 +15,24 @@ namespace Xamarin.Summit
     {
         public static int DisplayScreenWidth { get; set; }
 
-        public App()
+        public App(params IModule[] platformSpecificModules)
         {
             InitializeComponent();
-            RegisterTypes();
+            PrepareContainer(platformSpecificModules);
             ConfigureMap();
             RegisterAppCenter();
-            InitializeAsyc();
         }
 
-        void RegisterTypes()
+        protected override async void OnStart()
         {
+            base.OnStart();
+            await InitializeAsyc();
+        }
+
+        void PrepareContainer(IModule[] platformSpecificModules)
+        {
+            ViewModelLocator.Instance.RegisterModules(platformSpecificModules);
+
             ViewModelLocator.Instance.Register<INavigationService, NavigationService>();
 
             ViewModelLocator.Instance.Register<IAgendaService, AgendaService>();
@@ -54,7 +63,7 @@ namespace Xamarin.Summit
         => AppCenter.Start(ConstantHelper.AppCenterKey,
                   typeof(Analytics), typeof(Crashes), typeof(Push));
 
-        async void InitializeAsyc()
+        async Task InitializeAsyc()
             => await ViewModelLocator.Instance.Resolve<INavigationService>().NavigateToAsync<MainViewModel>();
     }
 }

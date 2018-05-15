@@ -11,3 +11,4 @@
 - [BottomTabbedPageRenderer](https://stackoverflow.com/questions/38446426/bottom-tabs-for-xamarin-android-in-xamarin-forms-app)
 - [Mudança de cores (tabbedPage)](https://montemagno.com/xamarin-forms-android-selected-and-unselected-tab-colors/)
 - [ImageCircle](https://blog.xamarin.com/elegant-circle-images-in-xamarin-forms/) 
+- [iocContainer](https://www.itmagination.com/en/booster/the-autofac-ioc-container-in-xamarin.forms) 
