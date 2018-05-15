@@ -11,6 +11,7 @@ namespace Xamarin.Summit
     {
         readonly IInfoService _infoService;
 
+
         public ICommand OpenMapCommand { get; }
 
         public ObservableCollection<SummitInfoWrapper> Items { get; }
@@ -19,15 +20,15 @@ namespace Xamarin.Summit
         {
             _infoService = infoService;
 
-            OpenMapCommand = new Command<EnderecoWrapper>(ExecuteOpenMapCommand);
+            OpenMapCommand = new Command<SummitInfoWrapper>(ExecuteOpenMapCommand);
 
             Items = new ObservableCollection<SummitInfoWrapper>();
         }
-
-        private void ExecuteOpenMapCommand(EnderecoWrapper obj)
+        
+        private void ExecuteOpenMapCommand(SummitInfoWrapper obj)
         {
-            var uri = new Uri(obj.MapaDirect);
-            Device.OpenUri(uri);
+            //var uri = new Uri(obj.MapaDirect);
+            //Device.OpenUri(uri);
         }
         protected async override Task<InformacaoWrapper> GetItemAsync()
             => _infoService.GetItem();
