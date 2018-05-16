@@ -1,7 +1,9 @@
 # Xamarin Summit
 Aplicativo desenvolvido para a comunidade ter as informações do evento Xamarin Summit e poder contribuir com o desenvolvimento.
 
+Versão Android poderá ser baixada via [Google Play](https://goo.gl/2nna5m)
 
+Api desenvolvida com Azure Functions
 
 ## Tecnologias e frameworks aplicados
 
