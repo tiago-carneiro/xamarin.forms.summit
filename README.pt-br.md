@@ -1,6 +1,8 @@
 # Xamarin Summit
 Aplicativo desenvolvido para a comunidade ter as informações do evento Xamarin Summit e poder contribuir com o desenvolvimento.
 
+[en-es readme](https://github.com/tiago-carneiro/xamarin.forms.summit/tree/master)
+
 Versão Android poderá ser baixada via [Google Play](https://goo.gl/2nna5m)
 
 Api desenvolvida com Azure Functions
