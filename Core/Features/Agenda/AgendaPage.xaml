@@ -3,65 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.AgendaPage">
-    <ContentPage.Content>
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:FalseToLightGrayConverter x:Key="falseToLightGrayConverter"></local:FalseToLightGrayConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <Label Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Message}"
+        <Label Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Message}"
                 IsVisible="{Binding ShowMessage}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
 
-            <local:TabHeaderItem x:Name="HeaderOne" Grid.Row="0" Grid.Column="0" 
+        <local:TabHeaderItem x:Name="HeaderOne" Grid.Row="0" Grid.Column="0" 
                                  Header="{Binding HeaderOne}" Current="{Binding CurrentHeader}" 
                                  Command="{Binding HeaderClickCommand}" />
-            <local:TabHeaderItem x:Name="HeaderTwo" Grid.Row="0" Grid.Column="1" 
+        <local:TabHeaderItem x:Name="HeaderTwo" Grid.Row="0" Grid.Column="1" 
                                  Header="{Binding HeaderTwo}" Current="{Binding CurrentHeader}" 
                                  Command="{Binding HeaderClickCommand}" />
 
-            <ListView x:Name="TimeLine" Grid.ColumnSpan="2" Grid.Row="1"
+        <ListView x:Name="TimeLine" Grid.ColumnSpan="2" Grid.Row="1"
                     VerticalOptions="FillAndExpand" 
                     HasUnevenRows="True"
                     HorizontalOptions="FillAndExpand"   
                     ItemsSource="{Binding TimeLine}"
                     CachingStrategy="RecycleElement"
                     local:AttachedItemTappedBehavior.Command="{Binding TimeLineClickCommand}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HorizontalOptions="FillAndExpand" BackgroundColor="{Binding Palestra, Converter={StaticResource falseToLightGrayConverter}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                                <Label Grid.Column="0" Grid.RowSpan="2" 
+                            <Label Grid.Column="0" Grid.RowSpan="2" 
                                        VerticalOptions="CenterAndExpand" HorizontalOptions="Center"
                                        Margin="16, 8, 8, 16" Text="{Binding Hora}"/>
 
-                                <Label Grid.Column="1" Grid.Row="0" Margin="0, 8, 16, 0"
+                            <Label Grid.Column="1" Grid.Row="0" Margin="0, 8, 16, 0"
                                        VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" 
                                        FontAttributes="Bold" FontSize="16" Text="{Binding Titulo}"/>
-                                <Label Grid.Column="1" Grid.Row="1" Margin="0, 0, 16, 8" 
+                            <Label Grid.Column="1" Grid.Row="1" Margin="0, 0, 16, 8" 
                                                           VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand"
                                                           FontSize="14" Text="{Binding Descricao}"/>
-
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-    </ContentPage.Content>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </local:TabbedItemPage>

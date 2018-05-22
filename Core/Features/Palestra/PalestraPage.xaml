@@ -22,16 +22,17 @@
             <DataTemplate>
                 <ViewCell>
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                 Margin="16, 0, 16, 16">
-                        <Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" 
-                               VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                 Margin="16, 0, 16, 16">                        
                         <local:ImageCircle HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
-                                           HeightRequest="100" WidthRequest="100" Source="Icon">
+                                           HeightRequest="100" WidthRequest="100" Source="Icon" Margin="0, 16, 0, 0">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Imagem}" CachingEnabled="true"/>
                             </Image.Source>
                         </local:ImageCircle>
+                        <Label Text="{Binding Nome}" FontAttributes="Bold" 
+                               VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
                         <Label Text="{Binding Descricao}" HorizontalTextAlignment="Center"/>
+                        <BoxView  HorizontalOptions="FillAndExpand" Margin="56, 0" VerticalOptions="Center" HeightRequest="0.5" Color="LightGray"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

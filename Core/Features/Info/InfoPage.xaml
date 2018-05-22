@@ -13,7 +13,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="{Binding Dados.Local}" HorizontalTextAlignment="Center" FontSize="15" Margin="16"/>
+                        <Label Grid.Row="0" Text="{Binding Dados.Local}" HorizontalTextAlignment="Center" FontSize="18" Margin="16"/>
                         <Image Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Aspect="AspectFill" HeightRequest="230">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Dados.Mapa}" CachingEnabled="true"/>
@@ -37,13 +37,14 @@
             <DataTemplate x:Key="organizacaoTemplate">
                 <ViewCell IsEnabled="False">
                     <StackLayout Margin="16, 0, 16, 16">
-                        <Label Text="{Binding Dados.Nome}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                        <local:ImageCircle HorizontalOptions="Center" HeightRequest="100" VerticalOptions="Center" WidthRequest="100">
+                        <local:ImageCircle HorizontalOptions="Center" HeightRequest="100" VerticalOptions="Center" WidthRequest="100" Margin="0, 16, 0, 0">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding Dados.Imagem}" CachingEnabled="true"/>
                             </Image.Source>
                         </local:ImageCircle>
+                        <Label Text="{Binding Dados.Nome}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         <Label Text="{Binding Dados.Descricao}" HorizontalTextAlignment="Center"/>
+                        <BoxView  HorizontalOptions="FillAndExpand" Margin="56, 0" VerticalOptions="Center" HeightRequest="0.5" Color="LightGray"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
