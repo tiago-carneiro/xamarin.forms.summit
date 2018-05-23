@@ -8,6 +8,7 @@ namespace Xamarin.Summit.Android
         {
             base.Load(builder);
             builder.RegisterType<ScreenSizeService>().As<IScreenSizeService>();
+            builder.RegisterType<InternetConnectionService>().As<IInternetConnectionService>();
         }
     }
 }

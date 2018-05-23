@@ -94,6 +94,7 @@
     <Compile Include="PlatformSpecificModule.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\InternetConnectionService.cs" />
     <Compile Include="Services\ScreenSizeService.cs" />
     <Compile Include="SplashScreen.cs" />
   </ItemGroup>

@@ -26,6 +26,13 @@ namespace Xamarin.Summit
             }
         }
 
+        private bool _dataLoaded;
+        public bool DataLoaded
+        {
+            get => _dataLoaded;
+            set => SetProperty(ref _dataLoaded, value);
+        }
+
         private bool _showMessage;
         public bool ShowMessage
         {
@@ -64,7 +71,8 @@ namespace Xamarin.Summit
                     await InitializeAsync();
                     break;
                 case LoadInfoStatus.Error:
-                    Message = info.Message;
+                    if (!DataLoaded)
+                        Message = info.Message;
                     break;
             }
         }
@@ -78,6 +86,9 @@ namespace Xamarin.Summit
         }
 
         protected virtual void OnLoadedData()
-            => Message = "";
+        {
+            Message = "";
+            DataLoaded = true;
+        }
     }
 }

@@ -130,7 +130,7 @@
     <value>Dia 2</value>
   </data>
   <data name="EmptyLoadMessage" xml:space="preserve">
-    <value>Não temos dados pra mostrar...</value>
+    <value>Verfique sua conexão com a internet. E comece de novo....</value>
   </data>
   <data name="InfoTitle" xml:space="preserve">
     <value>Informações</value>
