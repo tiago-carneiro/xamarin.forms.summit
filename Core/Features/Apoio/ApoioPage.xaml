@@ -4,7 +4,11 @@
              xmlns:local="clr-namespace:Xamarin.Summit"
              x:Class="Xamarin.Summit.ApoioPage">
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        
+
+        <Label VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+               HorizontalOptions="CenterAndExpand" Text="{Binding Message}"
+             IsVisible="{Binding ShowMessage}" Margin="26"/>
+
         <ListView   VerticalOptions="FillAndExpand" 
                     HasUnevenRows="true"
                     HorizontalOptions="FillAndExpand"   
@@ -14,7 +18,14 @@
                     BackgroundColor="White"
                     SeparatorColor="Transparent"
                     local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
-            <ListView.GroupHeaderTemplate> 
+            <ListView.Triggers>
+                <DataTrigger TargetType="ListView"
+                     Binding="{Binding ShowMessage}"
+                     Value="True">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </ListView.Triggers>
+            <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="#ebebeb">
@@ -36,10 +47,5 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Label  Text="{Binding Message}"
-                IsVisible="{Binding ShowMessage}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        
     </Grid>
 </local:TabbedItemPage>

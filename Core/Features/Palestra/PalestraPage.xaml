@@ -9,8 +9,7 @@
                 HorizontalOptions="FillAndExpand"   
                 ItemsSource="{Binding Item.Palestrantes}"
                 CachingStrategy="RecycleElement"
-                SeparatorVisibility="None"
-                local:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}">
+                SeparatorVisibility="None">
         <ListView.Header>
             <StackLayout>
                 <Label Text="{Binding Item.Titulo}" FontSize="Large" FontAttributes="Bold" Margin="16" />
@@ -20,7 +19,7 @@
         </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
+                <ViewCell IsEnabled="False">
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
                                  Margin="16, 0, 16, 16">                        
                         <local:ImageCircle HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 

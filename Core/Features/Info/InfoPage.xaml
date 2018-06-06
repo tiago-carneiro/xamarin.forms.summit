@@ -71,10 +71,8 @@
             </ListView.Header>
         </ListView>
 
-        <Label  Text="{Binding Message}"
-                IsVisible="{Binding ShowMessage}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <Label VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" Text="{Binding Message}"
+             IsVisible="{Binding ShowMessage}" Margin="26"/>
     </Grid>
 
 </local:TabbedItemPage>

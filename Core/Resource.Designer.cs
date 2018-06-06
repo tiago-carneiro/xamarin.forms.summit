@@ -97,7 +97,7 @@ namespace Xamarin.Summit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verfique sua conexão com a internet. E comece de novo.....
+        ///   Looks up a localized string similar to Verfique sua conexão com a internet..
         /// </summary>
         public static string EmptyLoadMessage {
             get {
