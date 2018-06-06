@@ -40,6 +40,7 @@ API developed with Azure Functions
 
 ## Contributors
 
+- [Belisa Furquim](https://www.linkedin.com/in/belisafurquim/)
 - [Dari Villa](http://darivila.com/)
 - [Jean Carlo](https://github.com/Jeaan2)
 - [Tiago Geanezini](https://github.com/tGeanezini)
